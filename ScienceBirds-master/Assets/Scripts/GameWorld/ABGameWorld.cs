@@ -86,6 +86,8 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 
 	// Use this for initialization
 	void Start () {
+
+        Time.timeScale = 0;
 		
 		_pigs = new List<ABPig>();
 		_birds = new List<ABBird>();
@@ -224,6 +226,18 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 
 	// Update is called once per frame
 	void Update () {
+
+        if (Input.GetKeyDown("space"))
+        {
+            if(Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+        }
 		
 		// Check if birds was trown, if it died and swap them when needed
 		ManageBirds();
