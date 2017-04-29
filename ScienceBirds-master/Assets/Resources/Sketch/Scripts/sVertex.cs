@@ -14,6 +14,10 @@ public class sVertex {
     // GameObject representante do vértice
     private GameObject Asset;
 
+    public GameObject GameObject() {
+        return Asset;
+    }
+
     // Flag: Vértice Selecionado
     private bool Active;
 
@@ -27,15 +31,21 @@ public class sVertex {
         Drawn = false;
     }
 
-    public void Draw (Transform parent) {
+    public void Draw (Transform parent, int hardness) {
         if (!Drawn) {
             Asset = sGridController.GetInstance().DrawVertex(parent, coord);
             Drawn = true;
         }
         if (Active) {
-            Asset.GetComponent<SpriteRenderer>().color = Color.green;
+            Asset.GetComponent<SpriteRenderer>().color = Color.red;
         } else {
-            Asset.GetComponent<SpriteRenderer>().color = Color.gray;
+            if (hardness == 2) {
+                Asset.GetComponent<SpriteRenderer>().color = new Color(0.25f, 0.25f, 0.25f);
+            } else if (hardness == 1) {
+                Asset.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+            } else if (hardness == 0) {
+                Asset.GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f);
+            }
         }
     }
 
