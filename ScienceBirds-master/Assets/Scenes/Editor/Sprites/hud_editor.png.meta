@@ -1,0 +1,501 @@
+fileFormatVersion: 2
+guid: 66307f84ee743704eac1872af138c26d
+timeCreated: 1494354868
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: hud_editor_0
+    21300002: hud_editor_1
+    21300004: hud_editor_2
+    21300006: hud_editor_3
+    21300008: hud_editor_4
+    21300010: hud_editor_5
+    21300012: hud_editor_6
+    21300014: hud_editor_7
+    21300016: hud_editor_8
+    21300018: hud_editor_9
+    21300020: hud_editor_10
+    21300022: hud_editor_11
+    21300024: hud_editor_12
+    21300026: hud_editor_13
+    21300028: hud_editor_14
+    21300030: hud_editor_15
+    21300032: hud_editor_16
+    21300034: hud_editor_17
+    21300036: hud_editor_18
+    21300038: hud_editor_19
+    21300040: hud_editor_20
+    21300042: hud_editor_21
+    21300044: hud_editor_22
+    21300046: hud_editor_23
+    21300048: hud_editor_24
+    21300050: hud_editor_25
+    21300052: hud_editor_26
+    21300054: hud_editor_27
+    21300056: hud_editor_28
+    21300058: hud_editor_29
+    21300060: hud_editor_30
+    21300062: hud_editor_31
+    21300064: hud_editor_32
+    21300066: hud_editor_33
+    21300068: hud_editor_34
+    21300070: hud_editor_35
+    21300072: hud_editor_36
+    21300074: hud_editor_37
+    21300076: hud_editor_38
+    21300078: hud_editor_39
+    21300080: hud_editor_40
+    21300082: hud_editor_41
+    21300084: hud_editor_42
+    21300086: hud_editor_43
+    21300088: hud_editor_44
+    21300090: hud_editor_45
+    21300092: hud_editor_46
+    21300094: hud_editor_47
+    21300096: hud_editor_48
+    21300098: hud_editor_49
+    21300100: hud_editor_50
+    21300102: hud_editor_51
+    21300104: hud_editor_52
+    21300106: hud_editor_53
+    21300108: hud_editor_54
+    21300110: hud_editor_55
+    21300112: hud_editor_56
+    21300114: hud_editor_57
+    21300116: hud_editor_58
+    21300118: hud_editor_59
+    21300120: hud_editor_60
+    21300122: hud_editor_61
+    21300124: hud_editor_62
+    21300126: hud_editor_63
+    21300128: hud_editor_64
+    21300130: hud_editor_65
+    21300132: hud_editor_66
+    21300134: hud_editor_67
+    21300136: hud_editor_68
+    21300138: hud_editor_69
+    21300140: hud_editor_70
+    21300142: hud_editor_71
+    21300144: hud_editor_72
+    21300146: hud_editor_73
+    21300148: hud_editor_74
+    21300150: hud_editor_75
+    21300152: hud_editor_76
+    21300154: hud_editor_77
+    21300156: hud_editor_78
+    21300158: hud_editor_79
+    21300160: hud_editor_80
+    21300162: hud_editor_81
+    21300164: hud_editor_82
+    21300166: hud_editor_83
+    21300168: hud_editor_84
+    21300170: hud_editor_85
+    21300172: hud_editor_86
+    21300174: hud_editor_87
+    21300176: hud_editor_88
+    21300178: hud_editor_89
+    21300180: hud_editor_90
+    21300182: hud_editor_91
+    21300184: hud_editor_92
+    21300186: hud_editor_93
+    21300188: hud_editor_94
+    21300190: hud_editor_95
+    21300192: hud_editor_96
+    21300194: hud_editor_97
+    21300196: hud_editor_98
+    21300198: hud_editor_99
+    21300200: hud_editor_100
+    21300202: hud_editor_101
+    21300204: hud_editor_102
+    21300206: hud_editor_103
+    21300208: hud_editor_104
+    21300210: hud_editor_105
+    21300212: hud_editor_106
+    21300214: hud_editor_107
+    21300216: hud_editor_108
+    21300218: hud_editor_109
+    21300220: hud_editor_110
+    21300222: hud_editor_111
+    21300224: hud_editor_112
+    21300226: hud_editor_113
+    21300228: hud_editor_114
+    21300230: hud_editor_115
+    21300232: hud_editor_116
+    21300234: hud_editor_117
+    21300236: hud_editor_118
+    21300238: hud_editor_119
+    21300240: hud_editor_120
+    21300242: hud_editor_121
+    21300244: hud_editor_122
+    21300246: hud_editor_123
+    21300248: hud_editor_124
+    21300250: hud_editor_125
+    21300252: hud_editor_126
+    21300254: hud_editor_127
+    21300256: hud_editor_128
+    21300258: hud_editor_129
+    21300260: hud_editor_130
+    21300262: hud_editor_131
+    21300264: hud_editor_132
+    21300266: hud_editor_133
+    21300268: hud_editor_134
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: tvOS
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Tizen
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Samsung TV
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hud_editor_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 441
+        width: 860
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_6
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 480
+        width: 120
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 373
+        width: 50
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_8
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 364
+        width: 109
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_9
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 384
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_10
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 384
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_11
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 377
+        width: 49
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_13
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 331
+        width: 89
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_14
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 342
+        width: 72
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_15
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 290
+        width: 114
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_16
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 302
+        width: 100
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_17
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 303
+        width: 106
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_19
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 238
+        width: 121
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_20
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 235
+        width: 135
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_25
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 248
+        width: 141
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_27
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 288
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_28
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 251
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hud_editor_30
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 1
+        width: 969
+        height: 205
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
