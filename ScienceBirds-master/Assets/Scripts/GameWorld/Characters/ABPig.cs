@@ -29,4 +29,38 @@ public class ABPig : ABCharacter {
 
 		base.Die(withEffect);
 	}
+
+    private GameObject selected,obj;
+    private Vector3 screenPoint;
+    private Vector3 offset;
+
+    void OnMouseDown()
+    {
+        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+
+        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
+        selected = GameObject.Find("Select");
+        if(selected != null)
+        {
+            string aux = GetComponent<ABGameObject>().name;
+            if (selected.transform.GetChild(0).name == "select")
+            {
+                selected.transform.GetChild(0).name = aux;
+            }
+        }
+
+    }
+
+
+    void OnMouseDrag()
+    {
+        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+
+        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+        transform.position = curPosition;
+
+    }
+
+    
 }
