@@ -45,6 +45,8 @@ public class sVertex {
                 Asset.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
             } else if (hardness == 0) {
                 Asset.GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f);
+            } else if (hardness == -1) {
+                Asset.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.80f, 0.80f);
             }
         }
     }

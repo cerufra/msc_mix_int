@@ -19,6 +19,7 @@ public class sHelper : MonoBehaviour {
 
     public KeyCode LeftClick;
     public KeyCode RightClick;
+    public KeyCode Ocos;
     public GameObject InfoBar;
     public GameObject Polygon;
     public GameObject Menu;
@@ -59,6 +60,10 @@ public class sHelper : MonoBehaviour {
             if (Input.GetKeyDown(RightClick)) {
                 ResolveRightClick();
             }
+        }
+
+        if (Input.GetKeyDown(Ocos)) {
+            GetHollows();
         }
     }
 
@@ -142,7 +147,7 @@ public class sHelper : MonoBehaviour {
 
             case NO_VERTEX:
                 // Definir resistência interna da estrutura
-                OpenMenu();
+                OpenMenu(true);
                 break;
 
             case SAME_VERTEX:
@@ -151,32 +156,32 @@ public class sHelper : MonoBehaviour {
 
             case DIFF_VERTEX:
                 // Definir resistência interna de outra estrutura
-                OpenMenu();
+                OpenMenu(true);
                 break;
 
             case NO_LINE:
                 // Definir resistência da linha
-                OpenMenu();
+                OpenMenu(false);
                 break;
 
             case SAME_LINE:
                 // Definir resistência da linha
-                OpenMenu();
+                OpenMenu(false);
                 break;
 
             case DIFF_LINE:
                 // Definir resistência da linha (de outra estrutura)
-                OpenMenu();
+                OpenMenu(false);
                 break;
 
         }
     }
 
-    public void OpenMenu() {
+    public void OpenMenu(bool VertexMenu) {
         ActiveMenu = true;
         Menu.SetActive(true);
         sMenu m = Menu.GetComponent<sMenu>();
-        m.Init(MouseX, MouseY);
+        m.Init(MouseX, MouseY, VertexMenu);
     }
 
     public void ResolveMenu(int X, int Y, int option) {
@@ -184,6 +189,11 @@ public class sHelper : MonoBehaviour {
         Menu.SetActive(false);
         // Operar sobre elemento
         switch (option) {
+            case -1:
+                // Deixar oco
+                SetHollow(X, Y);
+                break;
+
             case 0:
                 // Remover elemento
                 RemoveAt(X, Y);
@@ -203,6 +213,15 @@ public class sHelper : MonoBehaviour {
                 // Tornar resistente;
                 SetHard(X, Y);
                 break;
+        }
+    }
+
+    public void SetHollow(int X, int Y) {
+        object target = ObjectAt(X, Y);
+        sPolygon poly;
+        if (target is sVertex) {
+            poly = listPolygon.Find(p => p.GetComponent<sPolygon>().ContainsVertex(target as sVertex)).GetComponent<sPolygon>();
+            poly.SetHollow();
         }
     }
 
@@ -371,6 +390,30 @@ public class sHelper : MonoBehaviour {
             }
         }
         return null;
+    }
+
+    public string[] GetHollows() {
+        List<string> r = new List<string>();
+        sPolygon p;
+        foreach (GameObject g in listPolygon) {
+            p = g.GetComponent<sPolygon>();
+            if (p.IsHollow()) {
+                r.Add(p.AsString());
+            }
+        }
+        return r.ToArray();
+    }
+
+    public string[] GetFilled() {
+        List<string> s = new List<string>();
+        sPolygon p;
+        foreach (GameObject g in listPolygon) {
+            p = g.GetComponent<sPolygon>();
+            if (!p.IsHollow()) {
+                s.Add(p.AsMatrix());
+            }
+        }
+        return s.ToArray();
     }
 }
 

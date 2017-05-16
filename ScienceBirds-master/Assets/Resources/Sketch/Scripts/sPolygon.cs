@@ -35,6 +35,65 @@ public class sPolygon : MonoBehaviour {
         }
     }
 
+    public string AsString() {
+        string s = "";
+        foreach (sLine l in listLine) {
+            s += l.AsString();
+            s += "; ";
+        }
+        //s.Trim();
+        //s.Remove(s.Length - 2);
+        //Debug.Log(s);
+        return s;
+    }
+
+    public int[] BoundingBox() {
+        int[] b = { 1000, 1000, -10, -10 };
+        foreach (sVertex v in listVertex) {
+            if (v.Coordinate.x < b[0]) {
+                b[0] = ( int )v.Coordinate.x;
+            }
+            if (v.Coordinate.x > b[2]) {
+                b[2] = ( int )v.Coordinate.x;
+            }
+            if (v.Coordinate.y < b[1]) {
+                b[1] = ( int )v.Coordinate.y;
+            }
+            if (v.Coordinate.y > b[3]) {
+                b[3] = ( int )v.Coordinate.y;
+            }
+        }
+        return b;
+    }
+
+    public string AsMatrix() {
+        string s = "";
+        int[] bBox = BoundingBox();
+        s += bBox[0] + ", " + bBox[1] + "\n";
+        int width = bBox[2] - bBox[0];
+        int height = bBox[3] - bBox[1];
+        // itera sobre as linhas
+        int[,] m = new int[width, height];
+        for (int X = bBox[0]; X <= bBox[2]; X++) {
+            for (int Y = bBox[1]; Y <= bBox[3]; Y++) {
+                if (ContainsLine(X, Y) != null) {
+                    m[X, Y] = Stability;
+                } else {
+                    m[X, Y] = -1;
+                }
+            }
+        }
+        return s;
+    }
+
+    public bool IsHollow() {
+        return Stability < 0;
+    }
+
+    public void SetHollow() {
+        Stability = -1;
+    }
+
     public void SetUnstable() {
         Stability = 0;
     }
