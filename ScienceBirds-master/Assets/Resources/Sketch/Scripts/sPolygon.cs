@@ -119,6 +119,7 @@ public class sPolygon : MonoBehaviour {
             workVertex.SetInactive();
         }
         workVertex = v;
+        sHelper.GetInstance().GuideLines(X * 0.24f, Y * 0.24f);
         return v;
     }
 
@@ -132,6 +133,7 @@ public class sPolygon : MonoBehaviour {
             workVertex.SetInactive();
         }
         workVertex = v;
+        sHelper.GetInstance().GuideLines(v.GameObject().transform.position.x, v.GameObject().transform.position.y);
         return true;
     }
 
@@ -139,6 +141,7 @@ public class sPolygon : MonoBehaviour {
         if (workVertex != null) {
             workVertex.SetInactive();
         }
+        sHelper.GetInstance().Desselect();
     }
 
     public bool RemoveVertex(sVertex vertex) {

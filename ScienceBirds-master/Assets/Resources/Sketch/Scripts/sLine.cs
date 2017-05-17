@@ -42,6 +42,10 @@ public class sLine {
         return Asset;
     }
 
+    public void GameObject(GameObject ass) {
+        Asset = ass;
+    }
+
     public void Draw(Transform parent) {
         if (!Drawn) {
             Asset = sGridController.GetInstance().DrawLine(parent, v1.Coordinate, v2.Coordinate);

@@ -10,13 +10,16 @@ public class sGridController : MonoBehaviour {
     public GameObject vertex;
     public GameObject line;
 
+    public int maxHeight;
+    public int maxWidth;
+
 	// Use this for initialization
 	void Start () {
         Instance = this;
 
         GameObject newCell;
-        for (int row = 0; row < 200; row++) {
-            for (int column = 0; column < 200; column++) {
+        for (int row = 0; row < maxWidth; row++) {
+            for (int column = 0; column < maxHeight; column++) {
                 newCell = Instantiate(cell, new Vector3(column * 0.24f, row * 0.24f, 0), cell.transform.rotation);
                 newCell.GetComponent<sCell>().X = column;
                 newCell.GetComponent<sCell>().Y = row;

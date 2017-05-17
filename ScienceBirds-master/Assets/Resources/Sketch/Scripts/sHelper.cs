@@ -23,6 +23,7 @@ public class sHelper : MonoBehaviour {
     public GameObject InfoBar;
     public GameObject Polygon;
     public GameObject Menu;
+    public GameObject LinePrefab;
 
     // Posiçao do mouse no Grid
     private int MouseX;
@@ -41,6 +42,10 @@ public class sHelper : MonoBehaviour {
     // Flag: Menu ativo?
     private bool ActiveMenu;
 
+    // 4 linhas guia: horizontal, vertical, 45º e -45º
+    private GameObject[] guideLines;
+
+
 	// Use this for initialization
 	void Start () {
         Instance = this;
@@ -48,7 +53,28 @@ public class sHelper : MonoBehaviour {
         workPoly = null;
         MouseState = VOID;
         ActiveMenu = false;
-	}
+        guideLines = new GameObject[4];
+        for (int n = 0; n < 4; n++) {
+            guideLines[n] = Instantiate(LinePrefab, new Vector3(0f, 0f, -1f), LinePrefab.transform.rotation);
+            guideLines[n].transform.localScale += new Vector3(499.0f, -0.9f, 0);
+            guideLines[n].transform.Rotate(new Vector3(0, 0, n * 45));
+            guideLines[n].GetComponent<SpriteRenderer>().color = new Color(130, 0, 205, 90);
+            guideLines[n].SetActive(false);
+        }
+    }
+
+    public void Desselect() {
+        for (int n = 0; n < 4; n++) {
+            guideLines[n].SetActive(false);
+        }
+    }
+
+    public void GuideLines(float X, float Y) {
+        for (int n = 0; n < 4; n++) {
+            guideLines[n].transform.position = new Vector3(X, Y, -1);
+            guideLines[n].SetActive(true);
+        }
+    }
 
     // Update is called once per frame
     void Update() {
