@@ -115,7 +115,33 @@ public class sHelper : MonoBehaviour {
             case CELL:
                 // Declara novo vértice, traça linha entre novo vértice e vértice ativo da estrutura
                 v1 = workPoly.GetActiveVertex();
-                v2 = workPoly.AddVertex(MouseX, MouseY);
+                int deltaX = (int) v1.Coordinate.x - MouseX;
+                int deltaY = ( int )v1.Coordinate.y - MouseY;
+                if (deltaX == 0 || deltaY == 0) {
+                    // mesma linha horizontal ou vertical
+                    v2 = workPoly.AddVertex(MouseX, MouseY);
+                } else if (Mathf.Abs(deltaX) == Mathf.Abs(deltaY)) {
+                    // Ângulo de 45º
+                    v2 = workPoly.AddVertex(MouseX, MouseY);
+                } else {
+                    if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY)) {
+                        if (Mathf.Abs(deltaY) > Mathf.Abs(deltaX) / 2) {
+                            // Reta em ângulo
+                            v2 = workPoly.AddVertex(MouseX, ( int )v1.Coordinate.y - Mathf.Abs(deltaX) * Mathf.Abs(deltaY) / deltaY);
+                        } else {
+                            // Reta em nível
+                            v2 = workPoly.AddVertex(MouseX, ( int )v1.Coordinate.y);
+                        }
+                    } else {
+                        if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY) / 2) {
+                            // Reta em ângulo
+                            v2 = workPoly.AddVertex(( int )v1.Coordinate.x - Mathf.Abs(deltaY) * Mathf.Abs(deltaX) / deltaX, MouseY);
+                        } else {
+                            // Reta em nível
+                            v2 = workPoly.AddVertex(( int )v1.Coordinate.x, MouseY);
+                        }
+                    }
+                }
                 workPoly.AddLine(v1, v2);
                 break;
 
