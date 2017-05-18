@@ -1103,6 +1103,7 @@ MonoBehaviour:
   InfoBar: {fileID: 869564397}
   Polygon: {fileID: 1540562871542206, guid: 1faef6524ee5c8f48ba24aa94de4d55b, type: 2}
   Menu: {fileID: 1376932931}
+  LinePrefab: {fileID: 1347636787509108, guid: 0280d4b3963be5449836c8811d16d42b, type: 2}
 --- !u!1 &1068553832
 GameObject:
   m_ObjectHideFlags: 0
