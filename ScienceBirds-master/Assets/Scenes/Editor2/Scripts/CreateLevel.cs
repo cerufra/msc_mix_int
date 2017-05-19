@@ -34,7 +34,7 @@ public class CreateLevel : MonoBehaviour {
 		
 	}
 
-    string loadText = "Loading";
+ 
     void criaFase()
     {
         // adiciona passaros
