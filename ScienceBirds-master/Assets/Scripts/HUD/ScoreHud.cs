@@ -27,23 +27,27 @@ public class ScoreHud : ABSingleton<ScoreHud> {
 
 	// Use this for initialization
 	void Start () {
-	
-		_scoreEmitter = GetComponent<ABParticleSystem> ();
+        //GameObject edt = GameObject.Find("ModoEditor");
+        //if (edt != null) return;
+        _scoreEmitter = GetComponent<ABParticleSystem> ();
 		_scoreEmitter.SetParticlesParent (transform);
 	}
 
-	public void SpawnScorePoint(uint point, Vector3 position) {
+    public void SpawnScorePoint(uint point, Vector3 position) {
+        //GameObject edt = GameObject.Find("ModoEditor");
+        //if (edt != null) return;
+        //if (_scoreEmitter != null) { 
+            ABParticle scoreParticle = _scoreEmitter.ShootParticle();
+            if (!scoreParticle)
+                return;
 
-		ABParticle scoreParticle = _scoreEmitter.ShootParticle ();
-		if (!scoreParticle)
-			return;
+            scoreParticle.transform.rotation = Quaternion.identity;
+            scoreParticle.transform.position = position;
 
-		scoreParticle.transform.rotation = Quaternion.identity;
-		scoreParticle.transform.position = position;
+            Text pointText = scoreParticle.GetComponent<Text>();
+            pointText.text = point.ToString();
 
-		Text pointText = scoreParticle.GetComponent<Text>();
-		pointText.text = point.ToString();
-
-		HUD.Instance.AddScore (point);
+            HUD.Instance.AddScore(point);
+        //}
 	}
 }
