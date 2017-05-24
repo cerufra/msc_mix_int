@@ -10,14 +10,19 @@ public class CreateLevel : MonoBehaviour {
 
     public Button criar;
     public GameObject loading;
-    private string levelXML = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\n" +
+    public GameObject needBird;
+    private string levelXML = "";
+    private string baseXML = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\n" +
                               "<Level width = \"2\" >\n" +
                               "<Camera x=\"0\" y=\"-1\"> minWidth=\"15\" maxWidth=\"17.5\">\n";
-    private string path = @"C:\Users\DPIMESTRADO\Documents\GitHub\msc_mix_int\ScienceBirds-master\Assets\StreamingAssets\Levels\";
+    private string path;
     StreamWriter sw;
+
+    private int birdcount = 0;
 
     // Use this for initialization
     void Start () {
+        path = Application.dataPath + "/StreamingAssets/Levels/";
         Button btn = criar.GetComponent<Button>();
         btn.onClick.AddListener(criaFase);
 
@@ -27,6 +32,7 @@ public class CreateLevel : MonoBehaviour {
         {
             File.CreateText(path);
         }
+        levelXML = "";
     }
 	
 	// Update is called once per frame
@@ -34,9 +40,10 @@ public class CreateLevel : MonoBehaviour {
 		
 	}
 
- 
+    
     void criaFase()
     {
+        levelXML = baseXML;
         // adiciona passaros
         levelXML += "<Birds>\n";
         addBirds();
@@ -55,10 +62,17 @@ public class CreateLevel : MonoBehaviour {
         {
             sw.WriteLine(levelXML);
         }*/
-        File.WriteAllText(path, levelXML);
-        loading.SetActive(true);
-        StartCoroutine("Wait");
-        StartCoroutine("LoadingText");
+        if(birdcount > 0)
+        {
+            File.WriteAllText(path, levelXML);
+            loading.SetActive(true);
+            StartCoroutine("Wait");
+            StartCoroutine("LoadingText");
+            Debug.Log(path);
+        }else
+        {
+            needBird.SetActive(true);
+        }
     }
 
     IEnumerator LoadingText()
@@ -103,7 +117,8 @@ public class CreateLevel : MonoBehaviour {
         GameObject blackBirds = GameObject.Find("BlackBirds");
         if (blackBirds != null)
         {
-            int count = blackBirds.transform.childCount;
+            int count = int.Parse(blackBirds.GetComponent<Transform>().GetChild(0).name);
+            birdcount += count;
             while(count > 0)
             {
                 count--;
@@ -113,7 +128,8 @@ public class CreateLevel : MonoBehaviour {
         GameObject blueBirds = GameObject.Find("BlueBirds");
         if (blueBirds != null)
         {
-            int count = blueBirds.transform.childCount;
+            int count = int.Parse(blueBirds.GetComponent<Transform>().GetChild(0).name);
+            birdcount += count;
             while (count > 0)
             {
                 count--;
@@ -123,7 +139,8 @@ public class CreateLevel : MonoBehaviour {
         GameObject redBirds = GameObject.Find("RedBirds");
         if (redBirds != null)
         {
-            int count = redBirds.transform.childCount;
+            int count = int.Parse(redBirds.GetComponent<Transform>().GetChild(0).name);
+            birdcount += count;
             while (count > 0)
             {
                 count--;
@@ -139,9 +156,12 @@ public class CreateLevel : MonoBehaviour {
         if (objetos != null)
         {
             int objCount = objetos.transform.childCount;
+            string nome,nome2;
             for (int i = 0; i < objCount; i++)
             {
-                string nome = objetos.transform.GetChild(i).name;
+
+                nome = objetos.transform.GetChild(i).name;
+                nome2 = nome;
                 if (nome.Contains("Circle"))
                 {
                     levelXML += "<Block type = \"Circle\" material = \"wood\" ";
@@ -195,9 +215,17 @@ public class CreateLevel : MonoBehaviour {
                     //<Pig      type="BasicBig"  x="2"  y="2"  />
                     levelXML += "<Pig type=\"BasicBig\" ";
                 }
-                levelXML += "x=\"" + objetos.transform.GetChild(i).transform.position.x + "\" ";
 
-                levelXML += "y=\"" + objetos.transform.GetChild(i).transform.position.y + "\" />\n";
+
+                levelXML += "x=\"" + objetos.transform.GetChild(i).transform.position.x + "\" ";
+                levelXML += "y=\"" + objetos.transform.GetChild(i).transform.position.y + "\" ";
+
+                if (nome.Contains("Rotated"))
+                {
+                    levelXML += " rotation=\"90\" ";
+                }
+
+                levelXML += " />\n";
             }
         }
     }

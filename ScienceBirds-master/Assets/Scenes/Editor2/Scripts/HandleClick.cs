@@ -47,6 +47,7 @@ public class HandleClick : MonoBehaviour {
             }
             Destroy(child.GetComponent("ABParticleSystem"));
             child.GetComponent<Transform>().gameObject.AddComponent<Move>();
+            child.GetComponent<Collider2D>().isTrigger = true;
 
         }
 

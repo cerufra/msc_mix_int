@@ -41,30 +41,54 @@ public class HandleClickBirds : MonoBehaviour
     void birdBlack()
     {
         Debug.Log("add black bird");
-        if (blackBirds != null && total < 5)
+        if (total < 5)
         {
             black++;
-            blackBirds.transform.GetChild(0).name = black.ToString();
-            Debug.Log("done");
             total++;
         }
-    }
-    void birdRed()
-    {
-        if (redBirds != null && total < 5)
+        else
         {
-            red++;
-            redBirds.transform.GetChild(0).name = red.ToString();
-            total++;
+            total -= black;
+            black = 0;
+        }
+        if (blackBirds != null) { 
+            GetComponent<Transform>().GetChild(0).GetComponentInChildren<Text>().text = black.ToString();
+            blackBirds.transform.GetChild(0).name = black.ToString();   
         }
     }
     void birdBlue()
     {
-        if (blueBirds != null && total < 5)
+        if (total < 5)
         {
             blue++;
-            blueBirds.transform.GetChild(0).name = blue.ToString();
             total++;
+        }else
+        {
+            total -= blue;
+            blue = 0;
+        }
+        if (blueBirds != null)
+        {
+            GetComponent<Transform>().GetChild(1).GetComponentInChildren<Text>().text = blue.ToString();
+            blueBirds.transform.GetChild(0).name = blue.ToString();
+        }
+
+    }
+    void birdRed()
+    {
+        if (total < 5)
+        {
+            red++;
+            total++;
+        }else
+        {
+            total -= red;
+            red = 0;
+        }
+        if (redBirds != null)
+        {
+            GetComponent<Transform>().GetChild(2).GetComponentInChildren<Text>().text = red.ToString();
+            redBirds.transform.GetChild(0).name = red.ToString();
         }
     }
 }

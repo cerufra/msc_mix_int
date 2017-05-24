@@ -11,8 +11,7 @@ public class Move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+    }
 
 
     private Vector3 screenPoint;
@@ -34,6 +33,7 @@ public class Move : MonoBehaviour {
             if (selected.transform.GetChild(0).name == "select")
             {
                 selected.transform.GetChild(0).name = aux;
+                selected.transform.GetChild(1).name = aux;
             }
         }
     }
