@@ -164,51 +164,59 @@ public class CreateLevel : MonoBehaviour {
                 nome2 = nome;
                 if (nome.Contains("Circle"))
                 {
-                    levelXML += "<Block type = \"Circle\" material = \"wood\" ";
+                    levelXML += "<Block type = \"Circle\" ";
                 }
                 else if (nome.Contains("CircleSmall"))
                 {
-                    levelXML += "<Block type = \"CircleSmall\" material = \"wood\" ";
+                    levelXML += "<Block type = \"CircleSmall\" ";
                 }
                 else if (nome.Contains("RectBig"))
                 {
-                    levelXML += "<Block type = \"RectBig\" material = \"wood\" ";
+                    levelXML += "<Block type = \"RectBig\" ";
                 }
                 else if (nome.Contains("RectFat"))
                 {
-                    levelXML += "<Block type = \"RectFat\" material = \"wood\" ";
+                    levelXML += "<Block type = \"RectFat\" ";
                 }
                 else if (nome.Contains("RectMedium"))
                 {
-                    levelXML += "<Block type = \"RectMedium\" material = \"wood\" ";
+                    levelXML += "<Block type = \"RectMedium\" ";
                 }
                 else if (nome.Contains("RectSmall"))
                 {
-                    levelXML += "<Block type = \"RectSmall\" material = \"wood\" ";
+                    levelXML += "<Block type = \"RectSmall\" ";
                 }
                 else if (nome.Contains("RectTiny"))
                 {
-                    levelXML += "<Block type = \"RectTiny\" material = \"wood\" ";
+                    levelXML += "<Block type = \"RectTiny\" ";
                 }
                 else if (nome.Contains("SquareHole"))
                 {
-                    levelXML += "<Block type = \"SquareHole\" material = \"wood\" ";
+                    levelXML += "<Block type = \"SquareHole\" ";
                 }
                 else if (nome.Contains("SquareSmall"))
                 {
-                    levelXML += "<Block type = \"SquareSmall\" material = \"wood\" ";
+                    levelXML += "<Block type = \"SquareSmall\" ";
                 }
                 else if (nome.Contains("SquareTiny"))
                 {
-                    levelXML += "<Block type = \"SquareTiny\" material = \"wood\" ";
+                    levelXML += "<Block type = \"SquareTiny\" ";
                 }
                 else if (nome.Contains("Triangle"))
                 {
-                    levelXML += "<Block type = \"Triangle\" material = \"wood\" ";
+                    levelXML += "<Block type = \"Triangle\" ";
                 }
                 else if (nome.Contains("TriangleHole"))
                 {
-                    levelXML += "<Block type = \"TriangleHole\" material = \"wood\" ";
+                    levelXML += "<Block type = \"TriangleHole\" ";
+                }
+                else if (nome.Contains("BasicPigSmall"))
+                {
+                    levelXML += "<Pig type=\"BasicSmall\" ";
+                }
+                else if (nome.Contains("BasicPigMedium"))
+                {
+                    levelXML += "<Pig type=\"BasicMedium\" ";
                 }
                 else if (nome.Contains("BasicPig"))
                 {
@@ -216,6 +224,17 @@ public class CreateLevel : MonoBehaviour {
                     levelXML += "<Pig type=\"BasicBig\" ";
                 }
 
+
+                if (nome.Contains("wood"))
+                {
+                    levelXML += " material=\"wood\" ";
+                }else if (nome.Contains("ice"))
+                {
+                    levelXML += " material=\"ice\" ";
+                }else if (nome.Contains("stone"))
+                {
+                    levelXML += " material=\"stone\" ";
+                }
 
                 levelXML += "x=\"" + objetos.transform.GetChild(i).transform.position.x + "\" ";
                 levelXML += "y=\"" + objetos.transform.GetChild(i).transform.position.y + "\" ";

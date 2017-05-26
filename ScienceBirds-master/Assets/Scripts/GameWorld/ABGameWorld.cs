@@ -17,11 +17,15 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>
 //
 
-﻿using UnityEngine;
+#undef DEBUG
+//#define DEBUG
+
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+
 
 public class ABGameWorld : ABSingleton<ABGameWorld> {
 
@@ -87,8 +91,10 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 	// Use this for initialization
 	void Start () {
 
-        Time.timeScale = 0;
-		
+        #if (DEBUG)
+                Time.timeScale = 0;
+        #endif
+
 		_pigs = new List<ABPig>();
 		_birds = new List<ABBird>();
 		_birdTrajectory = new List<ABParticle>();
@@ -226,7 +232,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 
 	// Update is called once per frame
 	void Update () {
-
+        #if DEBUG
         if (Input.GetKeyDown("space"))
         {
             if(Time.timeScale == 1)
@@ -238,7 +244,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
                 Time.timeScale = 1;
             }
         }
-		
+        #endif
 		// Check if birds was trown, if it died and swap them when needed
 		ManageBirds();
 	}

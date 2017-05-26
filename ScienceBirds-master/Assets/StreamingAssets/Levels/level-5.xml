@@ -6,8 +6,7 @@
 </Birds>
 <Slingshot x="-8.5" y="-2.5">
 <GameObjects>
-<Block type = "Circle" material = "wood" x="-0.277092" y="-1.032922"  />
-<Block type = "RectBig" material = "wood" x="-0.2496576" y="-2.486968"  rotation="90"  />
-<Pig type="BasicBig" x="0.4773664" y="-2.967078"  />
+<Block type = "Circle"  material="wood" x="2.655173" y="-0.5862069"  />
+<Block type = "RectBig"  material="wood" x="2.517241" y="0.4137931"  />
 </GameObjects>
 </Level>
