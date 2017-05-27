@@ -23,7 +23,7 @@ public class sPolygon : MonoBehaviour {
     public void Init() {
         listVertex = new List<sVertex>();
         listLine = new List<sLine>();
-        Stability = 1;
+        Stability = -1;
     }
 
     public void Draw() {

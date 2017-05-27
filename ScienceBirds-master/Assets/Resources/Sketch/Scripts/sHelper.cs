@@ -24,6 +24,7 @@ public class sHelper : MonoBehaviour {
     public GameObject Polygon;
     public GameObject Menu;
     public GameObject LinePrefab;
+    public string path;
 
     // Posiçao do mouse no Grid
     private int MouseX;
@@ -454,6 +455,11 @@ public class sHelper : MonoBehaviour {
             }
         }
         return r.ToArray();
+    }
+
+    public void WritePoints() {
+        string[] points = GetHollows();
+        System.IO.File.WriteAllLines(path, points);
     }
 
     public string[] GetFilled() {

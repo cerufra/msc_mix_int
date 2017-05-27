@@ -19,7 +19,10 @@ public class sMenu : MonoBehaviour {
         mouseX = X;
         mouseY = Y;
         gameObject.transform.position = Input.mousePosition;
-        btnHollow.GetComponent<Button>().enabled = VertexMenu;
+        //btnHollow.GetComponent<Button>().enabled = VertexMenu;
+        for (int i = 3; i < 6; i++) {
+            gameObject.transform.GetChild(i).GetComponent<Button>().interactable = !VertexMenu;
+        }
     }
 
 	// Use this for initialization
