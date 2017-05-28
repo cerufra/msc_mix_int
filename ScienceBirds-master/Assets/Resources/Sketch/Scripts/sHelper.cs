@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.IO;
+using UnityEngine.SceneManagement;
+using System.Diagnostics;
 
 public class sHelper : MonoBehaviour {
 
@@ -24,6 +28,7 @@ public class sHelper : MonoBehaviour {
     public GameObject Polygon;
     public GameObject Menu;
     public GameObject LinePrefab;
+    public GameObject loading;
     public string path;
 
     // Posiçao do mouse no Grid
@@ -62,6 +67,7 @@ public class sHelper : MonoBehaviour {
             guideLines[n].GetComponent<SpriteRenderer>().color = new Color(130, 0, 205, 90);
             guideLines[n].SetActive(false);
         }
+        path = Application.dataPath + "/StreamingAssets/Line2Blocks/";
     }
 
     public void Desselect() {
@@ -458,8 +464,44 @@ public class sHelper : MonoBehaviour {
     }
 
     public void WritePoints() {
+        loading.SetActive(true);
         string[] points = GetHollows();
-        System.IO.File.WriteAllLines(path, points);
+        System.IO.File.WriteAllLines(path + "pontos", points);
+
+        ProcessStartInfo startInfo = new ProcessStartInfo("java", "-jar " + path + "Lines2Blocks.jar");
+        startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+        startInfo.CreateNoWindow = true;
+        startInfo.WorkingDirectory = path;
+        startInfo.UseShellExecute = false;
+        startInfo.RedirectStandardOutput = true;
+        Process p = Process.Start(startInfo);
+
+        //p.WaitForExit(45000);
+
+        /*while (!p.StandardOutput.EndOfStream)
+        {
+            string line = p.StandardOutput.ReadLine();
+            // do something with line
+            UnityEngine.Debug.Log(line);
+        }*/
+
+        StartCoroutine("Wait");
+        StartCoroutine("LoadingText");
+    }
+
+    IEnumerator LoadingText()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(01);
+            loading.transform.GetChild(1).GetComponent<Text>().text += " .";
+        }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(04);
+        SceneManager.LoadScene("Editor2", LoadSceneMode.Single);
     }
 
     public string[] GetFilled() {

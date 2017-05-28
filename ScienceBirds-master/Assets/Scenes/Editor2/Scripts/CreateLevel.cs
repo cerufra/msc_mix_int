@@ -49,7 +49,7 @@ public class CreateLevel : MonoBehaviour {
         addBirds();
         levelXML += "</Birds>\n";
 
-        levelXML += "<Slingshot x=\"-8.5\" y=\"-2.5\">\n";
+        levelXML += "<Slingshot x=\"-6\" y=\"-2.5\">\n";
 
         // adiciona objetos
         levelXML += "<GameObjects>\n";

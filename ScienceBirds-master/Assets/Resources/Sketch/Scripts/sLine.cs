@@ -61,13 +61,13 @@ public class sLine {
     }
 
     public string AsString() {
-        string s = "" + v1.Coordinate.x + ", " + v1.Coordinate.y + ", " + v2.Coordinate.x + ", " + v2.Coordinate.y + ", ";
+        string s = "" + v1.Coordinate.x + "," + v1.Coordinate.y + "," + v2.Coordinate.x + "," + v2.Coordinate.y + ",";
         if (Hardness == 0) {
-            s += "ice";
+            s += "\"ice\"";
         } else if (Hardness == 1) {
-            s += "wood";
+            s += "\"wood\"";
         } else if (Hardness == 2) {
-            s += "stone";
+            s += "\"stone\"";
         }
         return s;
     }

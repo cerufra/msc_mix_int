@@ -37,9 +37,14 @@ public class sPolygon : MonoBehaviour {
 
     public string AsString() {
         string s = "";
-        foreach (sLine l in listLine) {
+        /*foreach (sLine l in listLine) {
             s += l.AsString();
-            s += "; ";
+            s += "\n";
+        }*/
+        for(int i=0;i<listLine.Count; i++)
+        {
+            s += listLine[i].AsString();
+            if (i != listLine.Count - 1) s += "\n";
         }
         //s.Trim();
         //s.Remove(s.Length - 2);
