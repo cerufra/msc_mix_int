@@ -807,8 +807,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c86f37f07c98974589c4159507f7d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manual: {fileID: 0}
-  sketch: {fileID: 1491722707}
+  manual: {fileID: 1491722707}
+  sketch: {fileID: 0}
   editor: {fileID: 0}
   mainMenu: {fileID: 0}
 --- !u!114 &1491722707

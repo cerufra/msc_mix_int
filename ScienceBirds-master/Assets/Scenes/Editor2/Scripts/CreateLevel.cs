@@ -156,12 +156,11 @@ public class CreateLevel : MonoBehaviour {
         if (objetos != null)
         {
             int objCount = objetos.transform.childCount;
-            string nome,nome2;
+            string nome;
             for (int i = 0; i < objCount; i++)
             {
 
                 nome = objetos.transform.GetChild(i).name;
-                nome2 = nome;
                 if (nome.Contains("Circle"))
                 {
                     levelXML += "<Block type = \"Circle\" ";

@@ -2,11 +2,23 @@
 <Level width = "2" >
 <Camera x="0" y="-1"> minWidth="15" maxWidth="17.5">
 <Birds>
+<Bird type="BirdBlue"/>
 <Bird type="BirdRed"/>
 </Birds>
 <Slingshot x="-8.5" y="-2.5">
 <GameObjects>
-<Block type = "Circle"  material="wood" x="2.655173" y="-0.5862069"  />
-<Block type = "RectBig"  material="wood" x="2.517241" y="0.4137931"  />
+<Block type = "RectMedium"  material="stone" x="0.75" y="-2.68"  rotation="90"  />
+<Block type = "RectMedium"  material="stone" x="4.14" y="-2.68"  rotation="90"  />
+<Block type = "RectSmall"  material="wood" x="1.16" y="-1.62"  />
+<Block type = "RectSmall"  material="wood" x="1.25" y="-1.4"  />
+<Block type = "RectSmall"  material="wood" x="1.35" y="-1.18"  />
+<Block type = "RectSmall"  material="wood" x="1.44" y="-0.96"  />
+<Block type = "RectSmall"  material="wood" x="1.54" y="-0.74"  />
+<Block type = "RectSmall"  material="wood" x="1.63" y="-0.52"  />
+<Block type = "RectSmall"  material="wood" x="1.73" y="-0.3099999"  />
+<Block type = "RectSmall"  material="wood" x="1.82" y="-0.08999991"  />
+<Block type = "RectSmall"  material="wood" x="1.91" y="0.1300001"  />
+<Block type = "RectMedium"  material="ice" x="1.51" y="-2.67"  rotation="90"  />
+<Pig type="BasicBig"  material="wood" x="2.643642" y="-2.965463"  />
 </GameObjects>
 </Level>

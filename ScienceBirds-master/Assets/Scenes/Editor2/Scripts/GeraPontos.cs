@@ -32,6 +32,6 @@ public class GeraPontos : MonoBehaviour {
         startInfo.CreateNoWindow = true;
         startInfo.WorkingDirectory = basePath;
         startInfo.UseShellExecute = false;
-        Process process = Process.Start(startInfo);
+        Process.Start(startInfo);
     }
 }

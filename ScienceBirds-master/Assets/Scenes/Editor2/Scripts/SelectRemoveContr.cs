@@ -7,7 +7,6 @@ public class SelectRemoveContr : MonoBehaviour {
 
     public Button select, remove,rotate;
     public Transform exemplo;
-    private string last = "";
 
     // Use this for initialization
     void Start () {

@@ -40,11 +40,11 @@ public class CarregaCena : MonoBehaviour {
 		
 	}
 
-    void cenaManual()
+    public void cenaManual()
     {
         SceneManager.LoadScene("Editor2", LoadSceneMode.Single);
     }
-    void cenaSketch()
+    public void cenaSketch()
     {
         SceneManager.LoadScene("Editor_Sketch", LoadSceneMode.Single);
     }
