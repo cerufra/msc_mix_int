@@ -24,6 +24,10 @@ public class sGridController : MonoBehaviour {
                 newCell.GetComponent<sCell>().X = column;
                 newCell.GetComponent<sCell>().Y = row;
                 newCell.transform.SetParent(this.transform);
+                //if (row == 0 || column == 0)
+                //{
+                //    newCell.GetComponent<even>
+                //}
             }
         }
 	}
@@ -54,5 +58,10 @@ public class sGridController : MonoBehaviour {
         asset.transform.localScale += new Vector3(magnitude - 0.2f, -0.25f, 0);
         asset.transform.Rotate(new Vector3(0, 0, rotation));
         return asset;
+    }
+
+    public void OnMouseExit()
+    {
+        sHelper.GetInstance().UpdateMousePosition(null, null);
     }
 }

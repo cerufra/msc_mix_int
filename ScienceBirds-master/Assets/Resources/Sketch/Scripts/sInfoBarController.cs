@@ -30,13 +30,14 @@ public class sInfoBarController : MonoBehaviour {
     }
 
     public void UpdatePointerPosition(Vector2 MousePosition) {
-        if (MousePosition.x < 0 || MousePosition.y < 0 || MousePosition.x > 199 || MousePosition.y > 199) {
-            PositionX.text = "X:";
-            PositionY.text = "Y:";
-        }
-        PositionX.text = "X: " + MousePosition.x.ToString();
-        PositionY.text = "Y: " + MousePosition.y.ToString();
-    }
+		if (MousePosition.x < 0 || MousePosition.y < 0 || MousePosition.x > 199 || MousePosition.y > 199) {
+			PositionX.text = "X:";
+			PositionY.text = "Y:";
+		} else {
+			PositionX.text = "X: " + MousePosition.x.ToString ();
+			PositionY.text = "Y: " + MousePosition.y.ToString ();
+		}
+	}
 
     public void UpdateLeftClick (string function) {
         LeftClick.text = function;

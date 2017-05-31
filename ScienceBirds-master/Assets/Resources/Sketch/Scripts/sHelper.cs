@@ -121,6 +121,11 @@ public class sHelper : MonoBehaviour {
 
             case CELL:
                 // Declara novo vértice, traça linha entre novo vértice e vértice ativo da estrutura
+                if (MouseX < 0 || MouseY < 0)
+                {
+                    break;
+                }
+
                 v1 = workPoly.GetActiveVertex();
                 int deltaX = (int) v1.Coordinate.x - MouseX;
                 int deltaY = ( int )v1.Coordinate.y - MouseY;
@@ -132,17 +137,19 @@ public class sHelper : MonoBehaviour {
                     v2 = workPoly.AddVertex(MouseX, MouseY);
                 } else {
                     if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY)) {
-                        if (Mathf.Abs(deltaY) > Mathf.Abs(deltaX) / 2) {
+                        int coordY = (int)v1.Coordinate.y - Mathf.Abs(deltaX) * Mathf.Abs(deltaY) / deltaY;
+                        if (coordY >= 0 && coordY < sGridController.GetInstance().maxHeight && Mathf.Abs(deltaY) > Mathf.Abs(deltaX) / 2) {
                             // Reta em ângulo
-                            v2 = workPoly.AddVertex(MouseX, ( int )v1.Coordinate.y - Mathf.Abs(deltaX) * Mathf.Abs(deltaY) / deltaY);
+                            v2 = workPoly.AddVertex(MouseX, coordY);
                         } else {
                             // Reta em nível
                             v2 = workPoly.AddVertex(MouseX, ( int )v1.Coordinate.y);
                         }
                     } else {
-                        if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY) / 2) {
+                        int coordX = (int)v1.Coordinate.x - Mathf.Abs(deltaY) * Mathf.Abs(deltaX) / deltaX;
+                        if (coordX >= 0 && coordX < sGridController.GetInstance().maxWidth && Mathf.Abs(deltaX) > Mathf.Abs(deltaY) / 2) {
                             // Reta em ângulo
-                            v2 = workPoly.AddVertex(( int )v1.Coordinate.x - Mathf.Abs(deltaY) * Mathf.Abs(deltaX) / deltaX, MouseY);
+                            v2 = workPoly.AddVertex(coordX, MouseY);
                         } else {
                             // Reta em nível
                             v2 = workPoly.AddVertex(( int )v1.Coordinate.x, MouseY);
@@ -382,9 +389,14 @@ public class sHelper : MonoBehaviour {
 
     }
 
-    public void UpdateMousePosition (int X, int Y) {
-        MouseX = X;
-        MouseY = Y;
+    public void UpdateMousePosition (int? X, int? Y) {
+        if (X == null || Y == null) {
+            MouseX = -1;
+            MouseY = -1;
+        } else {
+            MouseX = (int)X;
+            MouseY = (int)Y;
+        }
         UpdateMouseState();
         UpdateMouseInfo();
     }

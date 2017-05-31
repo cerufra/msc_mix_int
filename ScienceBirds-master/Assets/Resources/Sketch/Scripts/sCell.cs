@@ -27,7 +27,20 @@ public class sCell : MonoBehaviour {
 		
 	}
 
+    //public void Init()
+    //{
+    //    if (X == 0 || Y == 0)
+    //    {
+    //        this.collider2D.
+    //    }
+    //}
+
     public void OnMouseEnter() {
         sHelper.GetInstance().UpdateMousePosition(posX, posY);
+    }
+
+    public void OnMouseExit()
+    {
+        sHelper.GetInstance().UpdateMousePosition(null, null);
     }
 }
