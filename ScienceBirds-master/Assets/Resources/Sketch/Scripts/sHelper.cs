@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
 using System.Diagnostics;
+using UnityEngine.EventSystems;
 
 public class sHelper : MonoBehaviour {
 
@@ -35,6 +36,7 @@ public class sHelper : MonoBehaviour {
     private int MouseX;
     private int MouseY;
     private int MouseState;
+    private bool _lock = false;
 
     // Conjunto de estruturas criadas
     private List<GameObject> listPolygon;
@@ -105,6 +107,13 @@ public class sHelper : MonoBehaviour {
     }
 
     public void ResolveLeftClick () {
+
+        //if (!EventSystem.current.IsPointerOverGameObject() return;
+
+        if (MouseX < 0 || MouseY < 0 || _lock)
+        {
+            return;
+        }
         GameObject poly;
         sVertex v1;
         sVertex v2;
@@ -121,11 +130,6 @@ public class sHelper : MonoBehaviour {
 
             case CELL:
                 // Declara novo vértice, traça linha entre novo vértice e vértice ativo da estrutura
-                if (MouseX < 0 || MouseY < 0)
-                {
-                    break;
-                }
-
                 v1 = workPoly.GetActiveVertex();
                 int deltaX = (int) v1.Coordinate.x - MouseX;
                 int deltaY = ( int )v1.Coordinate.y - MouseY;
@@ -389,16 +393,27 @@ public class sHelper : MonoBehaviour {
 
     }
 
-    public void UpdateMousePosition (int? X, int? Y) {
-        if (X == null || Y == null) {
+    public void LockMouse()
+    {
+        _lock = true;
+        UpdateMousePosition(null, null);
+    }
+
+    public void UnlockMouse()
+    {
+        _lock = false;
+    }
+
+    public void UpdateMousePosition (int? X = null, int? Y = null) {
+       if (X == null || Y == null || _lock) {
             MouseX = -1;
             MouseY = -1;
-        } else {
+       } else {
             MouseX = (int)X;
             MouseY = (int)Y;
-        }
-        UpdateMouseState();
-        UpdateMouseInfo();
+       }
+       UpdateMouseState();
+       UpdateMouseInfo();
     }
 
     public void UpdateMouseInfo() {
