@@ -32,8 +32,8 @@ public class Move : MonoBehaviour {
             string aux = GetComponent<Transform>().gameObject.name;
             if (selected.transform.GetChild(0).name == "select")
             {
-                selected.transform.GetChild(0).name = aux;
-                selected.transform.GetChild(1).name = aux;
+                selected.transform.GetChild(0).name = aux+"-";
+                selected.transform.GetChild(1).name = aux+"_";
             }
         }
     }
