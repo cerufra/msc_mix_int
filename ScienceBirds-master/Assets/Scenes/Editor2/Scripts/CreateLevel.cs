@@ -201,13 +201,13 @@ public class CreateLevel : MonoBehaviour {
                 {
                     levelXML += "<Block type = \"SquareTiny\" ";
                 }
-                else if (nome.Contains("Triangle"))
-                {
-                    levelXML += "<Block type = \"Triangle\" ";
-                }
                 else if (nome.Contains("TriangleHole"))
                 {
                     levelXML += "<Block type = \"TriangleHole\" ";
+                }
+                else if (nome.Contains("Triangle"))
+                {
+                    levelXML += "<Block type = \"Triangle\" ";
                 }
                 else if (nome.Contains("BasicPigSmall"))
                 {
