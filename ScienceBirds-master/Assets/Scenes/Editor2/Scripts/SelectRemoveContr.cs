@@ -67,14 +67,15 @@ public class SelectRemoveContr : MonoBehaviour {
             {
                 if (selected.transform.GetChild(0).name != "objeto")
                 {
-                    GameObject.Find(selected.transform.GetChild(0).name).transform.Rotate(new Vector3(0, 0, 1), 90);
                     GameObject.Find(selected.transform.GetChild(0).name).GetComponent<Renderer>().material.shader = exemplo.GetComponent<Renderer>().sharedMaterial.shader;
                     if (selected.transform.GetChild(0).name.Contains("Rotated_"))
                     {
+                        GameObject.Find(selected.transform.GetChild(0).name).transform.Rotate(new Vector3(0, 0, 1), -90);
                         GameObject.Find(selected.transform.GetChild(0).name).name = selected.transform.GetChild(0).name.Substring(0, selected.transform.GetChild(0).name.Length - 8);
                     }else
                     {
-                       // selected.transform.GetChild(0).name += "Rotated";
+                        // selected.transform.GetChild(0).name += "Rotated";
+                        GameObject.Find(selected.transform.GetChild(0).name).transform.Rotate(new Vector3(0, 0, 1), 90);
                         GameObject.Find(selected.transform.GetChild(0).name).name += "Rotated_";
                     }
                     selected.transform.GetChild(0).name = "objeto";
