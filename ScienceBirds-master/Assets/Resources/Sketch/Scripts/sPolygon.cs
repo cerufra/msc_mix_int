@@ -7,6 +7,10 @@ public class sPolygon : MonoBehaviour {
     private List<sVertex> listVertex;
     private List<sLine> listLine;
     private sVertex workVertex;
+    private bool selected;
+    public bool Selected {
+        get { return selected; }
+    }
 
     private int Stability;
 
@@ -24,6 +28,7 @@ public class sPolygon : MonoBehaviour {
         listVertex = new List<sVertex>();
         listLine = new List<sLine>();
         Stability = -1;
+        selected = true;
     }
 
     public void Draw() {
@@ -50,6 +55,10 @@ public class sPolygon : MonoBehaviour {
         //s.Remove(s.Length - 2);
         //Debug.Log(s);
         return s;
+    }
+
+    public bool NoVertexes() {
+        return listVertex.Count == 0;
     }
 
     public int[] BoundingBox() {
@@ -146,6 +155,7 @@ public class sPolygon : MonoBehaviour {
         if (workVertex != null) {
             workVertex.SetInactive();
         }
+        selected = false;
         sHelper.GetInstance().Desselect();
     }
 
