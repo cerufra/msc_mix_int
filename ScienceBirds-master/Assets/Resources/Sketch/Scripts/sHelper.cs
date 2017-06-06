@@ -163,6 +163,8 @@ public class sHelper : MonoBehaviour {
         GameObject poly;
         sVertex v1;
         sVertex v2;
+        int deltaX;
+        int deltaY;
         switch (MouseState) {
             case VOID:
                 // Declara nova Estrutura e adiciona um vértice na posição do mouse
@@ -179,8 +181,8 @@ public class sHelper : MonoBehaviour {
             case CELL:
                 // Declara novo vértice, traça linha entre novo vértice e vértice ativo da estrutura
                 v1 = workPoly.GetActiveVertex();
-                int deltaX = (int) v1.Coordinate.x - MouseX;
-                int deltaY = ( int )v1.Coordinate.y - MouseY;
+                deltaX = (int) v1.Coordinate.x - MouseX;
+                deltaY = ( int )v1.Coordinate.y - MouseY;
                 if (deltaX == 0 || deltaY == 0) {
                     // mesma linha horizontal ou vertical
                     v2 = workPoly.AddVertex(MouseX, MouseY);
@@ -221,8 +223,19 @@ public class sHelper : MonoBehaviour {
                 // Cria linha entre os dois vértices (ativo e clicado)
                 v1 = workPoly.GetActiveVertex();
                 v2 = workPoly.GetVertex(MouseX, MouseY);
-                workPoly.AddLine(v1, v2);
-                workPoly.SelectVertex(MouseX, MouseY);
+                deltaX = (int)(v1.Coordinate.x - v2.Coordinate.x);
+                deltaY = (int)(v1.Coordinate.y - v2.Coordinate.y);
+                if (deltaX != 0 || deltaY != 0)
+                {
+                    HardLock(true);
+                    Warning.SetActive(true);
+                    GameObject.Find("Mensagem").GetComponent<Text>().text = "Não é possível traçar retas anguladas";
+                }
+                else
+                {
+                    workPoly.AddLine(v1, v2);
+                    workPoly.SelectVertex(MouseX, MouseY);
+                }
                 break;
 
             //case DIFF_VERTEX:
@@ -553,6 +566,7 @@ public class sHelper : MonoBehaviour {
             HardLock(true);
             Warning.SetActive(true);
             loading.SetActive(false);
+            GameObject.Find("Mensagem").GetComponent<Text>().text = "Sketch em branco";
             return;
         }
         System.IO.File.WriteAllLines(path + "pontos", points);
