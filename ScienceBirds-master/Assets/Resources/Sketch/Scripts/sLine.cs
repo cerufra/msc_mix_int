@@ -52,11 +52,11 @@ public class sLine {
             Drawn = true;
         }
         if (Hardness == 0) {
-            Asset.GetComponent<SpriteRenderer>().color = new Color(0f, 0.75f, 1f);
+            Asset.GetComponent<SpriteRenderer>().color = sHelper.GetInstance().ICE_COLOR;
         } else if (Hardness == 1) {
-            Asset.GetComponent<SpriteRenderer>().color = new Color(0f, 0.50f, 0.75f);
+            Asset.GetComponent<SpriteRenderer>().color = sHelper.GetInstance().WOOD_COLOR;
         } else if (Hardness == 2) {
-            Asset.GetComponent<SpriteRenderer>().color = new Color(0f, 0.25f, 0.50f);
+            Asset.GetComponent<SpriteRenderer>().color = sHelper.GetInstance().STONE_COLOR;
         }
     }
 

@@ -22,9 +22,22 @@ public class sHelper : MonoBehaviour {
     private const int DIFF_LINE = 50; // Mouse sobre uma linha de outro polígono
     private const int NO_LINE = 70; // Mouse sobre uma linha, nenhum polígono em edição
 
+    public int newLineMaterial = 2;
+
+    public Color WOOD_COLOR = Color.red;
+    public Color ICE_COLOR = Color.cyan;
+    public Color STONE_COLOR = Color.grey;
+
     public KeyCode LeftClick;
     public KeyCode RightClick;
     public KeyCode Ocos;
+    public KeyCode Ice;
+    public KeyCode Wood;
+    public KeyCode Stone;
+    public KeyCode numIce;
+    public KeyCode numWood;
+    public KeyCode numStone;
+    public KeyCode DEL;
     public GameObject InfoBar;
     public GameObject Polygon;
     public GameObject Menu;
@@ -63,25 +76,28 @@ public class sHelper : MonoBehaviour {
         workPoly = null;
         MouseState = VOID;
         ActiveMenu = false;
-        guideLines = new GameObject[4];
-        for (int n = 0; n < 4; n++) {
+        //guideLines = new GameObject[4];
+        guideLines = new GameObject[2];
+        for (int n = 0; n < 2; n++) {
             guideLines[n] = Instantiate(LinePrefab, new Vector3(0f, 0f, -1f), LinePrefab.transform.rotation);
             guideLines[n].transform.localScale += new Vector3(499.0f, -0.9f, 0);
-            guideLines[n].transform.Rotate(new Vector3(0, 0, n * 45));
+            guideLines[n].transform.Rotate(new Vector3(0, 0, n * 90));
+            //guideLines[n].transform.Rotate(new Vector3(0, 0, n * 45));
             guideLines[n].GetComponent<SpriteRenderer>().color = new Color(130, 0, 205, 90);
             guideLines[n].SetActive(false);
         }
         path = Application.dataPath + "/StreamingAssets/Line2Blocks/";
+        GameObject.Find("std2").GetComponent<Text>().color = WOOD_COLOR;
     }
 
     public void Desselect() {
-        for (int n = 0; n < 4; n++) {
+        for (int n = 0; n < 2; n++) {
             guideLines[n].SetActive(false);
         }
     }
 
     public void GuideLines(float X, float Y) {
-        for (int n = 0; n < 4; n++) {
+        for (int n = 0; n < 2; n++) {
             guideLines[n].transform.position = new Vector3(X, Y, -1);
             guideLines[n].SetActive(true);
         }
@@ -101,6 +117,34 @@ public class sHelper : MonoBehaviour {
 
         if (Input.GetKeyDown(Ocos)) {
             GetHollows();
+        }
+
+        if (Input.GetKeyDown(Ice) || Input.GetKeyDown(numIce)) {
+            newLineMaterial = 1;
+            GameObject.Find("std1").GetComponent<Text>().color = ICE_COLOR;
+            GameObject.Find("std2").GetComponent<Text>().color = Color.white;
+            GameObject.Find("std3").GetComponent<Text>().color = Color.white;
+        }
+
+        if (Input.GetKeyDown(Wood) || Input.GetKeyDown(numWood)) {
+            newLineMaterial = 2;
+            GameObject.Find("std1").GetComponent<Text>().color = Color.white;
+            GameObject.Find("std2").GetComponent<Text>().color = WOOD_COLOR;
+            GameObject.Find("std3").GetComponent<Text>().color = Color.white;
+        }
+
+        if (Input.GetKeyDown(Stone) || Input.GetKeyDown(numStone)) {
+            newLineMaterial = 3;
+            GameObject.Find("std1").GetComponent<Text>().color = Color.white;
+            GameObject.Find("std2").GetComponent<Text>().color = Color.white;
+            GameObject.Find("std3").GetComponent<Text>().color = STONE_COLOR;
+        }
+
+        if (Input.GetKeyDown(DEL))
+        {
+            workPoly.RemoveVertex(workPoly.GetActiveVertex());
+            guideLines[0].SetActive(false);
+            guideLines[1].SetActive(false);
         }
     }
 
@@ -140,31 +184,32 @@ public class sHelper : MonoBehaviour {
                 if (deltaX == 0 || deltaY == 0) {
                     // mesma linha horizontal ou vertical
                     v2 = workPoly.AddVertex(MouseX, MouseY);
-                } else if (Mathf.Abs(deltaX) == Mathf.Abs(deltaY)) {
-                    // Ângulo de 45º
-                    v2 = workPoly.AddVertex(MouseX, MouseY);
-                } else {
-                    if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY)) {
-                        int coordY = (int)v1.Coordinate.y - Mathf.Abs(deltaX) * Mathf.Abs(deltaY) / deltaY;
-                        if (coordY >= 0 && coordY < sGridController.GetInstance().maxHeight && Mathf.Abs(deltaY) > Mathf.Abs(deltaX) / 2) {
-                            // Reta em ângulo
-                            v2 = workPoly.AddVertex(MouseX, coordY);
-                        } else {
-                            // Reta em nível
-                            v2 = workPoly.AddVertex(MouseX, ( int )v1.Coordinate.y);
-                        }
-                    } else {
-                        int coordX = (int)v1.Coordinate.x - Mathf.Abs(deltaY) * Mathf.Abs(deltaX) / deltaX;
-                        if (coordX >= 0 && coordX < sGridController.GetInstance().maxWidth && Mathf.Abs(deltaX) > Mathf.Abs(deltaY) / 2) {
-                            // Reta em ângulo
-                            v2 = workPoly.AddVertex(coordX, MouseY);
-                        } else {
-                            // Reta em nível
-                            v2 = workPoly.AddVertex(( int )v1.Coordinate.x, MouseY);
-                        }
-                    }
-                }
-                workPoly.AddLine(v1, v2);
+                    workPoly.AddLine(v1, v2);
+                } // else if (Mathf.Abs(deltaX) == Mathf.Abs(deltaY)) {
+                  // Ângulo de 45º
+                  //v2 = workPoly.AddVertex(MouseX, MouseY);
+                  //} else {
+                  //    if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY)) {
+                  //        int coordY = (int)v1.Coordinate.y - Mathf.Abs(deltaX) * Mathf.Abs(deltaY) / deltaY;
+                  //        if (coordY >= 0 && coordY < sGridController.GetInstance().maxHeight && Mathf.Abs(deltaY) > Mathf.Abs(deltaX) / 2) {
+                  //            // Reta em ângulo
+                  //            v2 = workPoly.AddVertex(MouseX, coordY);
+                  //        } else {
+                  //            // Reta em nível
+                  //            v2 = workPoly.AddVertex(MouseX, ( int )v1.Coordinate.y);
+                  //        }
+                  //    } else {
+                  //        int coordX = (int)v1.Coordinate.x - Mathf.Abs(deltaY) * Mathf.Abs(deltaX) / deltaX;
+                  //        if (coordX >= 0 && coordX < sGridController.GetInstance().maxWidth && Mathf.Abs(deltaX) > Mathf.Abs(deltaY) / 2) {
+                  //            // Reta em ângulo
+                  //            v2 = workPoly.AddVertex(coordX, MouseY);
+                  //        } else {
+                  //            // Reta em nível
+                  //            v2 = workPoly.AddVertex(( int )v1.Coordinate.x, MouseY);
+                  //        }
+                  //    }
+                  //}
+                  //workPoly.AddLine(v1, v2);
                 break;
 
             //case NO_VERTEX:
@@ -215,7 +260,7 @@ public class sHelper : MonoBehaviour {
 
             case CELL:
                 // Desseleciona estrutura
-                //workPoly.Desselect();
+                workPoly.Desselect();
                 //workPoly = null;
                 break;
 
@@ -350,7 +395,7 @@ public class sHelper : MonoBehaviour {
 
         if (hovering == null) {
             //Mouse sobre um célula vazia
-            if (workPoly == null || workPoly.NoVertexes()) {
+            if (workPoly == null || workPoly.NoVertexes() || !workPoly.Selected) {
                 // Nenhum polígono em edição
                 MouseState = VOID;
             } else if (workPoly != null) {

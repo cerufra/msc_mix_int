@@ -134,6 +134,7 @@ public class sPolygon : MonoBehaviour {
         }
         workVertex = v;
         sHelper.GetInstance().GuideLines(X * 0.24f, Y * 0.24f);
+        selected = true;
         return v;
     }
 
@@ -142,12 +143,13 @@ public class sPolygon : MonoBehaviour {
         if (v == null) {
             return false;
         }
-        v.SetActive();
         if (workVertex != null) {
             workVertex.SetInactive();
         }
+        v.SetActive();
         workVertex = v;
         sHelper.GetInstance().GuideLines(v.GameObject().transform.position.x, v.GameObject().transform.position.y);
+        selected = true;
         return true;
     }
 
@@ -155,11 +157,16 @@ public class sPolygon : MonoBehaviour {
         if (workVertex != null) {
             workVertex.SetInactive();
         }
+        //workVertex = null;
         selected = false;
         sHelper.GetInstance().Desselect();
     }
 
     public bool RemoveVertex(sVertex vertex) {
+        if (vertex == null)
+        {
+            return false;
+        }
         List<sLine> toRemove = listLine.FindAll(l => l.IsEndPoint(vertex));
         foreach (sLine l in toRemove) {
             RemoveLine(l);
@@ -227,7 +234,20 @@ public class sPolygon : MonoBehaviour {
 
         sLine l = new sLine(point1, point2);
         listLine.Add(l);
-        l.SetMidHardness();
+        switch (sHelper.GetInstance().newLineMaterial)
+        {
+            case 1:
+                l.SetSoftHardness();
+                break;
+
+            case 2:
+                l.SetMidHardness();
+                break;
+
+            case 3:
+                l.SetHardHardness();
+                break;
+        }
         return l;
     }
 }
