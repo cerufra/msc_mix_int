@@ -100,7 +100,7 @@ public class ABLevelSelect : ABMenu {
 
     private void preparaEditor(string levelXML)
     {
-#if !UNITY_WEBGL && UNITY_EDITOR
+#if !UNITY_WEBGL
         string path = Application.dataPath + @"/StreamingAssets/Line2Blocks/level-1.xml";
         if (!File.Exists(path))
         {

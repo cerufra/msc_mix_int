@@ -2,28 +2,25 @@
 <Level width = "2" >
 <Camera x="0" y="-1"> minWidth="15" maxWidth="17.5">
 <Birds>
-<Bird type="BirdBlue"/>
 <Bird type="BirdRed"/>
 </Birds>
 <Slingshot x="-6" y="-2.5">
 <GameObjects>
-<Block type = "RectSmall"  material="wood" x="2.64" y="-2.97"  rotation="90"  />
-<Block type = "RectSmall"  material="wood" x="2.64" y="-2.12"  rotation="90"  />
-<Block type = "RectSmall"  material="wood" x="3.01" y="-1.55"  />
-<Block type = "RectSmall"  material="wood" x="3.86" y="-1.55"  />
-<Block type = "SquareTiny"  material="wood" x="4.43" y="-1.55"  />
-<Block type = "RectSmall"  material="wood" x="4.52" y="-2.97"  rotation="90"  />
-<Block type = "RectSmall"  material="wood" x="4.52" y="-2.12"  rotation="90"  />
-<Block type = "SquareTiny"  material="ice" x="1.32" y="-3.43"  rotation="90"  />
-<Block type = "SquareTiny"  material="ice" x="1.32" y="-3.43"  rotation="90"  />
-<Block type = "RectMedium"  material="ice" x="3.49" y="-2.67"  rotation="90"  />
-<Block type = "SquareTiny"  material="ice" x="3.49" y="-1.73"  rotation="90"  />
-<Block type = "RectMedium"  material="ice" x="4.33" y="-2.67"  rotation="90"  />
-<Block type = "SquareTiny"  material="ice" x="4.33" y="-1.73"  rotation="90"  />
-<Block type = "SquareTiny"  material="ice" x="2.26" y="-3.43"  rotation="90"  />
-<Block type = "SquareTiny"  material="ice" x="2.26" y="-3.43"  rotation="90"  />
-<Pig type="BasicBig"  material="wood" x="3.491367" y="-0.6734693"  />
-<Pig type="BasicMedium"  material="wood" x="5.720566" y="-3.012559"  />
-<Pig type="BasicSmall"  material="wood" x="7.196233" y="-3.153846"  />
+<Block type = "SquareHole"  material="wood" x="6.19" y="-3.24"  />
+<Block type = "SquareHole"  material="wood" x="5.39" y="-3.24"  />
+<Block type = "SquareHole"  material="wood" x="4.59" y="-3.24"  />
+<Block type = "RectTiny"  material="wood" x="4.126" y="-3.38"  />
+<Block type = "SquareHole"  material="wood" x="3.39" y="-3.24"  />
+<Block type = "RectTiny"  material="wood" x="2.928" y="-3.38"  />
+<Block type = "SquareHole"  material="wood" x="2.2" y="-3.24"  />
+<Block type = "SquareHole"  material="wood" x="1.4" y="-3.24"  />
+<Block type = "RectTiny"  material="wood" x="0.9320002" y="-3.38"  />
+<Block type = "SquareHole"  material="wood" x="0.1999998" y="-3.24"  />
+<Block type = "SquareHole"  material="wood" x="0.1999998" y="-2.84"  />
+<Block type = "RectTiny"  material="wood" x="0.9320002" y="-3.26"  />
+<Block type = "RectTiny"  material="wood" x="2.928" y="-3.26"  />
+<Block type = "RectTiny"  material="wood" x="4.126" y="-3.26"  />
+<Block type = "RectTiny"  material="wood" x="0.9320002" y="-3.14"  />
+<Pig type="BasicBig"  material="wood" x="5.186814" y="-2.22763"  />
 </GameObjects>
 </Level>
