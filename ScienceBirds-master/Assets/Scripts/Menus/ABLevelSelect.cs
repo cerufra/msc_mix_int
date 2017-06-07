@@ -86,7 +86,8 @@ public class ABLevelSelect : ABMenu {
 
 			Button selectButton = obj.GetComponent<Button> ();
 
-			selectButton.onClick.AddListener (delegate { 
+			selectButton.onClick.AddListener (delegate {
+                preparaEditor(allXmlFiles[sel.LevelIndex]);
 				LoadNextScene("GameWorld", true, sel.UpdateLevelList); });
 
 			Text selectText = selectButton.GetComponentInChildren<Text> ();
@@ -96,4 +97,16 @@ public class ABLevelSelect : ABMenu {
 				j--;
 		}
 	}
+
+    private void preparaEditor(string levelXML)
+    {
+#if !UNITY_WEBGL && UNITY_EDITOR
+        string path = Application.dataPath + @"/StreamingAssets/Line2Blocks/level-1.xml";
+        if (!File.Exists(path))
+        {
+            File.CreateText(path);
+        }
+        File.WriteAllText(path, levelXML);
+#endif
+    }
 }

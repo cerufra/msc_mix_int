@@ -177,7 +177,7 @@ public class CarregaObjetos : MonoBehaviour {
                 Rigidbody2D f = child.GetComponent<Collider2D>().attachedRigidbody;
                 f.gravityScale = 0;
                 f.freezeRotation = true;
-                if (child.name.Contains("Pig"))
+                if (child.name.Contains("Basic"))
                 {
                     Destroy(child.GetComponent("ABPig"));
                 }

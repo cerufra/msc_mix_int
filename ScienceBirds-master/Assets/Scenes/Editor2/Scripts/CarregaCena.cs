@@ -42,6 +42,11 @@ public class CarregaCena : MonoBehaviour {
 
     public void cenaManual()
     {
+        /*GameObject dontDestroyOnLoad = GameObject.Find("*thegameobjecttobedestroyed*");
+        if(dontDestroyOnLoad != null)
+        {
+            Destroy(dontDestroyOnLoad);
+        }*/
         SceneManager.LoadScene("Editor2", LoadSceneMode.Single);
     }
     public void cenaSketch()
