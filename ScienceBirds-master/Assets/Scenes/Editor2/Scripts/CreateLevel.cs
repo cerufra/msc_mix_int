@@ -209,15 +209,15 @@ public class CreateLevel : MonoBehaviour {
                 {
                     levelXML += "<Block type = \"Triangle\" ";
                 }
-                else if (nome.Contains("BasicPigSmall"))
+                else if (nome.Contains("BasicSmall"))
                 {
                     levelXML += "<Pig type=\"BasicSmall\" ";
                 }
-                else if (nome.Contains("BasicPigMedium"))
+                else if (nome.Contains("BasicMedium"))
                 {
                     levelXML += "<Pig type=\"BasicMedium\" ";
                 }
-                else if (nome.Contains("BasicPig"))
+                else if (nome.Contains("BasicBig"))
                 {
                     //<Pig      type="BasicBig"  x="2"  y="2"  />
                     levelXML += "<Pig type=\"BasicBig\" ";

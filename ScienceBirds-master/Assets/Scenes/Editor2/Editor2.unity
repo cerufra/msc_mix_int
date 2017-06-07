@@ -2036,7 +2036,7 @@ MonoBehaviour:
   botao: {fileID: 766526576}
   mat: {fileID: 0}
   bloco: {fileID: 4000012424040856, guid: fd1fe0572f67e4b42b976ef4e7b06aba, type: 2}
-  tipo: BasicPig
+  tipo: BasicBig
   wood: {fileID: 0}
   ice: {fileID: 0}
   stone: {fileID: 0}
@@ -2576,7 +2576,7 @@ MonoBehaviour:
   botao: {fileID: 939652005}
   mat: {fileID: 0}
   bloco: {fileID: 400000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
-  tipo: BasicPigSmall
+  tipo: BasicSmall
   wood: {fileID: 0}
   ice: {fileID: 0}
   stone: {fileID: 0}
@@ -3418,7 +3418,7 @@ MonoBehaviour:
   botao: {fileID: 1190406729}
   mat: {fileID: 0}
   bloco: {fileID: 4000011083339930, guid: 426d313c2a66947b595ce87c9a6ff372, type: 2}
-  tipo: BasicPigMedium
+  tipo: BasicMedium
   wood: {fileID: 0}
   ice: {fileID: 0}
   stone: {fileID: 0}
@@ -6098,7 +6098,7 @@ MonoBehaviour:
   basicPig: {fileID: 4000012424040856, guid: fd1fe0572f67e4b42b976ef4e7b06aba, type: 2}
   basicPigMedium: {fileID: 4000011083339930, guid: 426d313c2a66947b595ce87c9a6ff372,
     type: 2}
-  basicBigSmall: {fileID: 400000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
+  basicPigSmall: {fileID: 400000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
 --- !u!1 &2014808344
 GameObject:
   m_ObjectHideFlags: 0

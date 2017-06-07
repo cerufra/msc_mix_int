@@ -11,7 +11,7 @@ public class CarregaObjetos : MonoBehaviour {
     string xmlText = "";
 
     public Transform circle, circleSmall, rectBig, rectFat, rectMedium, rectSmall, rectTiny, 
-        squareHole, squareSmall, SquareTiny, triangle, triangleHole, basicPig, basicPigMedium, basicBigSmall;
+        squareHole, squareSmall, SquareTiny, triangle, triangleHole, basicPig, basicPigMedium, basicPigSmall;
 
     // Use this for initialization
     void Start () {
@@ -47,9 +47,8 @@ public class CarregaObjetos : MonoBehaviour {
             float y = (float)Convert.ToDouble(reader.Value);
 
             float rotation = 0f;
-            if (reader.GetAttribute("rotation") != null)
+            if (!type.Contains("Basic") && reader.GetAttribute("rotation") != null)
             {
-
                 reader.MoveToAttribute("rotation");
                 rotation = (float)Convert.ToDouble(reader.Value);
             }
@@ -141,13 +140,16 @@ public class CarregaObjetos : MonoBehaviour {
             }else if (tipo.Contains("SquareTiny"))
             {
                 bloco = SquareTiny;
-            }else if (tipo.Contains("Triangle"))
-            {
-                bloco = triangle;
-            }else if (tipo.Contains("TriangleHole"))
+            }
+            else if (tipo.Contains("TriangleHole"))
             {
                 bloco = triangleHole;
-            }else if (tipo.Contains("BasicPig"))
+            }
+            else if (tipo.Contains("Triangle"))
+            {
+                bloco = triangle;
+            }
+            else if (tipo.Contains("BasicBig"))
             {
                 bloco = basicPig;
             }else if (tipo.Contains("BasicMedium"))
@@ -155,7 +157,7 @@ public class CarregaObjetos : MonoBehaviour {
                 bloco = basicPigMedium;
             }else
             {
-                bloco = basicBigSmall;
+                bloco = basicPigSmall;
             }
 
             if (objetos != null)

@@ -33,7 +33,7 @@ public class HandleClick : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!tipo.Contains("Pig") && botao != null)
+        if (!tipo.Contains("Basic") && botao != null)
         {
             if (material == "wood")
             {
@@ -66,7 +66,7 @@ public class HandleClick : MonoBehaviour {
             Rigidbody2D f = child.GetComponent<Collider2D>().attachedRigidbody;
             f.gravityScale = 0;
             f.freezeRotation = true;
-            if (child.name.Contains("Pig"))
+            if (child.name.Contains("Basic"))
             {
                 Destroy(child.GetComponent("ABPig"));
             }
