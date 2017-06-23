@@ -31,6 +31,7 @@ public class CreateLevel : MonoBehaviour {
         if (!File.Exists(path))
         {
             File.CreateText(path);
+            Debug.Log("Arquivo criado");
         }
         levelXML = "";
     }

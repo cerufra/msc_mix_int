@@ -9,3 +9,5 @@ Temp/*
 obj/*
 Assets/Experiments/* 
 Website/*
+Assets/StreamingAssets/Levels/*
+Assets/StreamingAssets/Line2Blocks/level-1.xml*
