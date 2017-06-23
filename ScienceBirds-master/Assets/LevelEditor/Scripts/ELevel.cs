@@ -19,6 +19,11 @@ public class ELevel : MonoBehaviour {
     {
         public GameObject gameObject { get; set; }
         public OBjData dados { get; set; }
+        public void recuperaDadosObjeto()
+        {
+            dados.x = gameObject.transform.position.x;
+            dados.y = gameObject.transform.position.y;
+        }
     }
 
     public Dictionary<long, EObject> blocksEditor = new Dictionary<long, EObject>();
@@ -26,13 +31,15 @@ public class ELevel : MonoBehaviour {
 
     public bool PrepareForSaving()
     {
-        for (int i = 0; i < blocksEditor.Count; i++)
+        foreach (EObject block in blocksEditor.Values)
         {
-            level.blocks.Add((BlockData)blocksEditor[i].dados);
+            block.recuperaDadosObjeto();
+            level.blocks.Add((BlockData)block.dados);
         }
-        for (int i = 0; i < pigsEditor.Count; i++)
+        foreach (EObject pig in pigsEditor.Values)
         {
-            level.pigs.Add(pigsEditor[i].dados);
+            pig.recuperaDadosObjeto();
+            level.pigs.Add(pig.dados);
         }
         if (blocksEditor.Count == 0 || pigsEditor.Count == 0 || level.birds.Count == 0)
             return false;

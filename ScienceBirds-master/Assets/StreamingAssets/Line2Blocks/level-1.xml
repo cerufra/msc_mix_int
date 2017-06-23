@@ -6,6 +6,7 @@
   </Birds>
   <Slingshot x="-6" y="-2.5" />
   <GameObjects>
-    <Block type="RectFat" material="wood" x="0" y="6" rotation="0" />
+    <Block type="SquareHole" material="wood" x="3.626374" y="-2.896389" rotation="0" />
+    <Pig type="BasicBig" x="4.662481" y="-3.006279" rotation="0" />
   </GameObjects>
 </Level>

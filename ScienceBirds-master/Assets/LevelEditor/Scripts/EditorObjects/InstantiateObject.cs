@@ -15,9 +15,6 @@ public class InstantiateObject : MonoBehaviour {
         mousePosition.z = -5;
 
         transform.position = mousePosition;
-
-        if (Input.GetKey(KeyCode.Escape))
-            Destroy(gameObject);
     }
 
     void OnMouseDown()
