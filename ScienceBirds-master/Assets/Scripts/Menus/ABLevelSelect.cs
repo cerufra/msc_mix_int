@@ -107,6 +107,8 @@ public class ABLevelSelect : ABMenu {
             File.CreateText(path);
         }
         File.WriteAllText(path, levelXML);
+        //Debug.Log("copiando arquivo");
+
 #endif
     }
 }

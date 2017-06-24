@@ -8,12 +8,7 @@ public class MenuObject : MonoBehaviour {
     public static MenuObject instance = null;
 
     private long objectIndex = -1;
-    private ELevel.EObject refObject;
     private string type;
-
-    public Button rotate;
-    public Button delete;
-    public Button cancel;
 
     void Awake()
     {
@@ -21,10 +16,6 @@ public class MenuObject : MonoBehaviour {
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-
-        rotate.onClick.AddListener(RotateObject);
-        delete.onClick.AddListener(DeleteObject);
-        cancel.onClick.AddListener(HideMenu);
 
         HideMenu();
     }
@@ -66,23 +57,16 @@ public class MenuObject : MonoBehaviour {
 	
     public void AtivateMenu(long index, string type)
     {
-        if (gameObject.activeSelf)
-            return;
-
         gameObject.SetActive(true);
         Vector3 position = new Vector3(Input.mousePosition.x + 50, Input.mousePosition.y - 60, Input.mousePosition.z);
         transform.position = position;
 
         objectIndex = index;
         this.type = type;
+    }
 
-        if (type.Equals("block"))
-        {
-            refObject = ELevel.instance.blocksEditor[index];
-        }
-        else if (type.Equals("pig"))
-        {
-            refObject = ELevel.instance.pigsEditor[index];
-        }
+    public bool DifferentIndex(long idx)
+    {
+        return (objectIndex != idx);
     }
 }

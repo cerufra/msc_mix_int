@@ -34,7 +34,11 @@ public class AddBlockCommand : UndoableCommand {
                 MonoBehaviour.Destroy(block.gameObject.GetComponent<PolygonCollider2D>());
                 block.gameObject.AddComponent<BoxCollider2D>();
             }
-            block.gameObject.transform.Rotate(new Vector3(0, 0, 1), block.dados.rotation);
+            if(block.dados.rotation != 0)
+            {
+                block.rotated90Degree = true;
+                block.gameObject.transform.Rotate(new Vector3(0, 0, 1), 90);
+            }
             block.gameObject.GetComponent<Transform>().gameObject.AddComponent<InstantiateObject>();
         }
 

@@ -11,14 +11,15 @@ public class AddBirdCommand : Command {
 
 	public AddBirdCommand(string type, Transform birdPanel = null)
     {
-        if (!ELevel.instance.birdCount.ContainsKey(type))
-            ELevel.instance.birdCount.Add(type, 0);
         this.birdPanel = birdPanel;
         this.type = type;
     }
 
     public override void Execute()
     {
+        if (!ELevel.instance.birdCount.ContainsKey(type))
+            ELevel.instance.birdCount.Add(type, 0);
+
         if (ELevel.instance.birdCount[type] < 9)
             ELevel.instance.birdCount[type]++;
 

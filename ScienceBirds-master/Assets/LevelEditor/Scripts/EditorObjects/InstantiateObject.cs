@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InstantiateObject : MonoBehaviour {
 
@@ -30,6 +31,7 @@ public class InstantiateObject : MonoBehaviour {
 
     void OnMouseDown()
     {
-        gameObject.AddComponent<MoveObject>();
+        if(!EventSystem.current.IsPointerOverGameObject())
+            gameObject.AddComponent<MoveObject>();
     }
 }

@@ -9,4 +9,10 @@ public class ChangeScene : MonoBehaviour {
     {
         SceneManager.LoadScene(target);
     }
+
+    public void editarLevel()
+    {
+        LevelEditorManager.loadXMLFile = true;
+        SceneManager.LoadScene("LevelEditor");
+    }
 }

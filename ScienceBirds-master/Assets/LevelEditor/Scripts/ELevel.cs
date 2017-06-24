@@ -42,25 +42,31 @@ public class ELevel : MonoBehaviour {
 
     public bool PrepareForSaving()
     {
-        foreach (EObject block in blocksEditor.Values)
+        List<EObject> blockValues = new List<EObject>(blocksEditor.Values);
+        foreach (EObject block in blockValues)
         {
             block.recuperaDadosObjeto();
             level.blocks.Add((BlockData)block.dados);
         }
-        foreach (EObject pig in pigsEditor.Values)
+
+        List<EObject> pigsValues = new List<EObject>(pigsEditor.Values);
+        foreach (EObject pig in pigsValues)
         {
             pig.recuperaDadosObjeto();
             level.pigs.Add(pig.dados);
         }
-        foreach (string bird in birdCount.Keys)
+
+        List<string> birdsNames = new List<string>(birdCount.Keys);
+        foreach (string bird in birdsNames)
         {
-            for (int i = 0; i < birdCount[bird]; i++)
+            int num = birdCount[bird];
+            for (int i = 0; i < num; i++)
             {
                 level.birds.Add(new BirdData(bird));
             }
         }
 
-        if (blocksEditor.Count == 0 || pigsEditor.Count == 0 || level.birds.Count == 0)
+        if (level.blocks.Count == 0 || level.pigs.Count == 0 || level.birds.Count == 0)
             return false;
         return true;
     }
@@ -76,14 +82,14 @@ public class ELevel : MonoBehaviour {
         AddSlingShot();
         instance.level.width = 2;
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         // Limpa levels criados ateriormente
-        /*DirectoryInfo di = new DirectoryInfo(Application.dataPath + "/StreamingAssets/Levels/");
+        DirectoryInfo di = new DirectoryInfo(Application.dataPath + "/StreamingAssets/Levels/");
         foreach (FileInfo file in di.GetFiles())
         {
             file.Delete();
-        }*/
+        }
     }
 
     void AddCamera()

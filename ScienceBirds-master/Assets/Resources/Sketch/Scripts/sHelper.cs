@@ -604,7 +604,8 @@ public class sHelper : MonoBehaviour {
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(04);
-        SceneManager.LoadScene("Editor2", LoadSceneMode.Single);
+        LevelEditorManager.loadXMLFile = true;
+        SceneManager.LoadScene("LevelEditor", LoadSceneMode.Single);
     }
 
     //public string[] GetFilled() {

@@ -28,9 +28,6 @@ public class LevelEditorManager : MonoBehaviour
     public GameObject warning;
     //public Transform topPanel;
 
-    // Add/Remove bird controllers
-    Dictionary<string, Transform> birdControllers = new Dictionary<string, Transform>();
-
     // Material atual
     private string currentMaterial = "wood";
 
@@ -41,7 +38,7 @@ public class LevelEditorManager : MonoBehaviour
     public static CommandManager commandManager = new CommandManager();
 
     // Caso true, permite carregar level xml para editor
-    public static bool loadXMLFile = true;
+    public static bool loadXMLFile = false;
     public static string pathXMLFile = @"/StreamingAssets/Line2Blocks/level-1.xml";
 
     void Awake()
@@ -66,8 +63,6 @@ public class LevelEditorManager : MonoBehaviour
             RemoveBirdCommand removeBird = new RemoveBirdCommand(birds[i].name, birdController.transform);
             Button removeButton = birdController.transform.GetChild(2).GetComponent<Button>();
             removeButton.onClick.AddListener(delegate { commandManager.ExecuteCommand(removeBird); });
-            // guarda referencia
-            birdControllers.Add(birds[i].name, birdController.transform);
         }
 
         // Guarda index dos blocos/porcos pelo tipo -> para encontrar prefab pelo tipo
@@ -79,7 +74,10 @@ public class LevelEditorManager : MonoBehaviour
         {
             typePrefabIndex.Add(pigs[i].name, i);
         }
+    }
 
+    void Start()
+    {
         if (loadXMLFile)
         {
             CarregaXmlLevel(Application.dataPath + pathXMLFile);
@@ -89,6 +87,7 @@ public class LevelEditorManager : MonoBehaviour
 
     public void clickInstatiateObj(string type)
     {
+        ELevel.instance.creatingObject = true;
         toInstantiate = type;
         createInstance();
     }
@@ -117,19 +116,72 @@ public class LevelEditorManager : MonoBehaviour
             if ((Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl)) && Input.GetKeyDown(KeyCode.Z))
             {
                 commandManager.Undo();
-                //Debug.Log("Undo");
             }
             else if (Input.GetKey(KeyCode.M))
             {
                 changeCurrentMaterial();
             }
+            else if (Input.GetKey(KeyCode.Alpha1))
+            {
+                clickInstatiateObj("Circle");
+            }
+            else if (Input.GetKey(KeyCode.Alpha2))
+            {
+                clickInstatiateObj("CircleSmall");
+            }
+            else if (Input.GetKey(KeyCode.Alpha3))
+            {
+                clickInstatiateObj("RectBig");
+            }
+            else if (Input.GetKey(KeyCode.Alpha4))
+            {
+                clickInstatiateObj("RectFat");
+            }
+            else if (Input.GetKey(KeyCode.Alpha5))
+            {
+                clickInstatiateObj("RectMedium");
+            }
+            else if (Input.GetKey(KeyCode.Alpha6))
+            {
+                clickInstatiateObj("RectSmall");
+            }
+            else if (Input.GetKey(KeyCode.Alpha7))
+            {
+                clickInstatiateObj("RectTiny");
+            }
+            else if (Input.GetKey(KeyCode.Alpha8))
+            {
+                clickInstatiateObj("SquareHole");
+            }
+            else if (Input.GetKey(KeyCode.Alpha9))
+            {
+                clickInstatiateObj("SquareSmall");
+            }
+            else if (Input.GetKey(KeyCode.W))
+            {
+                clickInstatiateObj("SquareTiny");
+            }
+            else if (Input.GetKey(KeyCode.E))
+            {
+                clickInstatiateObj("Triangle");
+            }
+            else if (Input.GetKey(KeyCode.R))
+            {
+                clickInstatiateObj("TriangleHole");
+            }
+            else if (Input.GetKey(KeyCode.T))
+            {
+                clickInstatiateObj("BasicBig");
+            }
+            else if (Input.GetKey(KeyCode.Y))
+            {
+                clickInstatiateObj("BasicMedium");
+            }
+            else if (Input.GetKey(KeyCode.U))
+            {
+                clickInstatiateObj("BasicSmall");
+            }
         }
-
-        /*if(toInstantiate != null)
-        {
-
-        }
-        */
     }
 
     public void changeCurrentMaterial()
@@ -162,6 +214,7 @@ public class LevelEditorManager : MonoBehaviour
 
     public void CancelButton()
     {
+        ELevel.instance.PrepareForSaving();
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -169,8 +222,6 @@ public class LevelEditorManager : MonoBehaviour
     {
         if (ELevel.instance.PrepareForSaving()) 
         {
-            //Debug.Log(ELevel.GetXmlLevel(ELevel.instance.level));
-            // LevelLoader.LoadXmlLevel(ELevel.GetXmlLevel(ELevel.instance.level));
             string path = Application.dataPath + "/StreamingAssets/Levels/level-"
                 + ELevel.instance.levelNum + ".xml";
             ELevel.instance.SaveXmlLevel(path);
@@ -186,11 +237,11 @@ public class LevelEditorManager : MonoBehaviour
 
     public void CarregaXmlLevel(string path)
     {
-        ELevel.instance.loadingLevelFromFile = true;
         string levelFileXML = LevelLoader.ReadXmlLevel(path);
-        Debug.Log(levelFileXML);
+
         ABLevel levelFromFile = LevelLoader.LoadXmlLevel(levelFileXML);
-        
+
+        ELevel.instance.loadingLevelFromFile = true;
         Command addObject = null;
         int index;
         foreach (BlockData block in levelFromFile.blocks)
@@ -207,12 +258,6 @@ public class LevelEditorManager : MonoBehaviour
             commandManager.ExecuteCommand(addObject);
         }
 
-        for (int i = 0; i < levelFromFile.birds.Count; i++)
-        {
-            addObject = new AddBirdCommand(levelFromFile.birds[i].type, birdControllers[levelFromFile.birds[i].type]);
-            commandManager.ExecuteCommand(addObject);
-        }
-        
         ELevel.instance.loadingLevelFromFile = false;
     }
 }

@@ -26,7 +26,11 @@ public class AddPigCommand : UndoableCommand {
             pig.gameObject.name = "pig_" + pigIndex;
             MonoBehaviour.Destroy(pig.gameObject.GetComponent("ABPig"));
             MonoBehaviour.Destroy(pig.gameObject.GetComponent("ABParticleSystem"));
-            pig.gameObject.transform.Rotate(new Vector3(0, 0, 1), pig.dados.rotation);
+            if(pig.dados.rotation != 0)
+            {
+                pig.gameObject.transform.Rotate(new Vector3(0, 0, 1), pig.dados.rotation);
+                pig.rotated90Degree = true;
+            }
             pig.gameObject.GetComponent<Transform>().gameObject.AddComponent<InstantiateObject>();
             pig.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         }
