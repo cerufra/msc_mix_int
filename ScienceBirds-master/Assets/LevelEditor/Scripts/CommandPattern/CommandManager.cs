@@ -12,7 +12,7 @@ public class CommandManager
         if (cmd is UndoableCommand)
         {
             commandStack.Push(cmd);
-            Debug.Log(commandStack.Count);
+            //Debug.Log(commandStack.Count);
         }
     }
 

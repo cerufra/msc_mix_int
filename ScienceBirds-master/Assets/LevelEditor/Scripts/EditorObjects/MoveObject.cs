@@ -9,9 +9,16 @@ public class MoveObject : MonoBehaviour
     private Vector3 posicaoAntesDeArrastar = new Vector3();
     bool instanciado = false;
 
+    long objectIndex;
+    string objectType;
+
     void Awake()
     {
         Destroy(gameObject.GetComponent<InstantiateObject>());
+
+        string[] objName = gameObject.name.Split('_');
+        objectType = objName[0];
+        objectIndex = long.Parse(objName[1]);
     }
 
     void OnMouseDown()
@@ -21,6 +28,8 @@ public class MoveObject : MonoBehaviour
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 
         posicaoAntesDeArrastar = gameObject.transform.position;
+
+        MenuObject.instance.HideMenu();
     }
 
     void OnMouseDrag()
@@ -33,13 +42,19 @@ public class MoveObject : MonoBehaviour
 
     void OnMouseUp()
     {
-        string[] objName = gameObject.name.Split('_');
-        long objectIndex = long.Parse(objName[1]);
         ChangeObjectPositionCommand cbp = new ChangeObjectPositionCommand(objectIndex, posicaoAntesDeArrastar);
         if (instanciado)
             LevelEditorManager.commandManager.ExecuteCommand(cbp);
         else
             instanciado = true;
+    }
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            MenuObject.instance.AtivateMenu(objectIndex, objectType);
+        }
     }
 
 

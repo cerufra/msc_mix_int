@@ -21,13 +21,12 @@ public class AddBlockCommand : UndoableCommand {
 
         if (prefab != null)
         {
-            Vector3 foraDaTela = new Vector3(10, 10, -5);
-            block.gameObject = MonoBehaviour.Instantiate(prefab.gameObject, foraDaTela, Quaternion.identity) as GameObject;
+            Vector3 posicao = new Vector3(block.dados.x, block.dados.y, -5);
+            block.gameObject = MonoBehaviour.Instantiate(prefab.gameObject, posicao, Quaternion.identity) as GameObject;
             MATERIALS mat = (MATERIALS)System.Enum.Parse(typeof(MATERIALS), ((BlockData)block.dados).material);
             block.gameObject.GetComponent<ABBlock>().SetMaterial(mat);
             MonoBehaviour.Destroy(block.gameObject.GetComponent("ABBlock"));
             MonoBehaviour.Destroy(block.gameObject.GetComponent("ABParticleSystem"));
-            block.gameObject.GetComponent<Transform>().gameObject.AddComponent<InstantiateObject>();
             block.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
             block.gameObject.name = "block_" + blockIndex;
             if (block.dados.type.Equals("TriangleHole"))
@@ -35,6 +34,8 @@ public class AddBlockCommand : UndoableCommand {
                 MonoBehaviour.Destroy(block.gameObject.GetComponent<PolygonCollider2D>());
                 block.gameObject.AddComponent<BoxCollider2D>();
             }
+            block.gameObject.transform.Rotate(new Vector3(0, 0, 1), block.dados.rotation);
+            block.gameObject.GetComponent<Transform>().gameObject.AddComponent<InstantiateObject>();
         }
 
         ELevel.instance.blocksEditor.Add(blockIndex, block);

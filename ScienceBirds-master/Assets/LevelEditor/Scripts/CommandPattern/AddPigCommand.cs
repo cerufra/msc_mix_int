@@ -21,14 +21,14 @@ public class AddPigCommand : UndoableCommand {
 
         if (prefab != null)
         {
-            Vector3 foraDaTela = new Vector3(10, 10, -5);
-            pig.gameObject = MonoBehaviour.Instantiate(prefab.gameObject, foraDaTela, Quaternion.identity) as GameObject;
+            Vector3 posicao = new Vector3(pig.dados.x, pig.dados.y, -5);
+            pig.gameObject = MonoBehaviour.Instantiate(prefab.gameObject, posicao, Quaternion.identity) as GameObject;
+            pig.gameObject.name = "pig_" + pigIndex;
             MonoBehaviour.Destroy(pig.gameObject.GetComponent("ABPig"));
             MonoBehaviour.Destroy(pig.gameObject.GetComponent("ABParticleSystem"));
+            pig.gameObject.transform.Rotate(new Vector3(0, 0, 1), pig.dados.rotation);
             pig.gameObject.GetComponent<Transform>().gameObject.AddComponent<InstantiateObject>();
             pig.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-
-            pig.gameObject.name = "pig_" + pigIndex;
         }
 
         ELevel.instance.pigsEditor.Add(pigIndex, pig);

@@ -4,61 +4,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RemoveBirdCommand : UndoableCommand
+public class RemoveBirdCommand : Command
 {
 
     private Transform birdPanel = null;
-    private BirdData item;
-    private bool executado = false;
+    private string type;
 
     public RemoveBirdCommand(string type, Transform birdPanel = null)
     {
-        item = new BirdData(type);
-        InitializeCount(type);
+        if (!ELevel.instance.birdCount.ContainsKey(type))
+            ELevel.instance.birdCount.Add(type, 0);
         this.birdPanel = birdPanel;
+        this.type = type;
     }
-
-    public RemoveBirdCommand(BirdData bird)
-    {
-        item = bird;
-        InitializeCount(bird.type);
-    }
-
-    void InitializeCount(string type)
-    {
-        if (!AddBirdCommand.birdCount.ContainsKey(type))
-            AddBirdCommand.birdCount.Add(type, 0);
-    }
-
-    public override void Undo()
-    {
-        if (executado)
-        {
-            ELevel.instance.level.birds.Add(item);
-            AddBirdCommand.birdCount[item.type]++;
-            AddBirdCommand.birdCountTotal++;
-            if (birdPanel != null)
-            {
-                birdPanel.transform.GetChild(3).GetComponent<Text>().text = AddBirdCommand.birdCount[item.type].ToString();
-            }
-        }
-    }
-
+    
     public override void Execute()
     {
-        if(AddBirdCommand.birdCount[item.type] > 0)
+        if (ELevel.instance.birdCount[type] > 0)
+            ELevel.instance.birdCount[type]--;
+
+        if (birdPanel != null)
         {
-            ELevel.instance.level.birds.Remove(item);
-            AddBirdCommand.birdCount[item.type]--;
-            AddBirdCommand.birdCountTotal--;
-            if (birdPanel != null)
-            {
-                birdPanel.transform.GetChild(3).GetComponent<Text>().text = AddBirdCommand.birdCount[item.type].ToString();
-            }
-            executado = true;
-        }else
-        {
-            executado = false;
+            birdPanel.transform.GetChild(3).GetComponent<Text>().text = ELevel.instance.birdCount[type].ToString();
         }
     }
 }

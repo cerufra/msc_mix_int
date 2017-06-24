@@ -27,7 +27,9 @@ public class LevelEditorManager : MonoBehaviour
     public Transform bottomPanel;
     public GameObject warning;
     //public Transform topPanel;
-    //public Transform blockPanel;
+
+    // Add/Remove bird controllers
+    Dictionary<string, Transform> birdControllers = new Dictionary<string, Transform>();
 
     // Material atual
     private string currentMaterial = "wood";
@@ -37,6 +39,10 @@ public class LevelEditorManager : MonoBehaviour
 
     // Command Manager
     public static CommandManager commandManager = new CommandManager();
+
+    // Caso true, permite carregar level xml para editor
+    public static bool loadXMLFile = true;
+    public static string pathXMLFile = @"/StreamingAssets/Line2Blocks/level-1.xml";
 
     void Awake()
     {
@@ -54,14 +60,14 @@ public class LevelEditorManager : MonoBehaviour
             Button addButton = birdController.transform.GetChild(1).GetComponent<Button>();
             addButton.onClick.AddListener(delegate 
                                             {
-                                                if(AddBirdCommand.birdCountTotal < 5)
-                                                    commandManager.ExecuteCommand(addBird);
-                                                //Debug.Log(AddBirdCommand.birdCountTotal);
+                                                commandManager.ExecuteCommand(addBird);
                                             });
             // Remove Button
             RemoveBirdCommand removeBird = new RemoveBirdCommand(birds[i].name, birdController.transform);
             Button removeButton = birdController.transform.GetChild(2).GetComponent<Button>();
             removeButton.onClick.AddListener(delegate { commandManager.ExecuteCommand(removeBird); });
+            // guarda referencia
+            birdControllers.Add(birds[i].name, birdController.transform);
         }
 
         // Guarda index dos blocos/porcos pelo tipo -> para encontrar prefab pelo tipo
@@ -72,6 +78,12 @@ public class LevelEditorManager : MonoBehaviour
         for (int i = 0; i < pigs.Count; i++)
         {
             typePrefabIndex.Add(pigs[i].name, i);
+        }
+
+        if (loadXMLFile)
+        {
+            CarregaXmlLevel(Application.dataPath + pathXMLFile);
+            loadXMLFile = false;
         }
     }
 
@@ -87,10 +99,10 @@ public class LevelEditorManager : MonoBehaviour
         int index = typePrefabIndex[toInstantiate];
         if (toInstantiate.Contains("Basic"))
         {
-            addObject = new AddPigCommand(toInstantiate, 0, 0, 0, pigs[index]);
+            addObject = new AddPigCommand(toInstantiate, 0, 10, 10, pigs[index]);
         }else if(toInstantiate != null)
         {
-            addObject = new AddBlockCommand(toInstantiate, 0, 8, 6, currentMaterial, blocks[index]);
+            addObject = new AddBlockCommand(toInstantiate, 0, 10, 10, currentMaterial, blocks[index]);
         }
         if (addObject != null)
             commandManager.ExecuteCommand(addObject);
@@ -170,5 +182,37 @@ public class LevelEditorManager : MonoBehaviour
         {
             warning.SetActive(true);
         }
+    }
+
+    public void CarregaXmlLevel(string path)
+    {
+        ELevel.instance.loadingLevelFromFile = true;
+        string levelFileXML = LevelLoader.ReadXmlLevel(path);
+        Debug.Log(levelFileXML);
+        ABLevel levelFromFile = LevelLoader.LoadXmlLevel(levelFileXML);
+        
+        Command addObject = null;
+        int index;
+        foreach (BlockData block in levelFromFile.blocks)
+        {
+            index = typePrefabIndex[block.type];
+            addObject = new AddBlockCommand(block.type, block.rotation, block.x, block.y, block.material, blocks[index]);
+            commandManager.ExecuteCommand(addObject);
+        }
+
+        foreach (OBjData pig in levelFromFile.pigs)
+        {
+            index = typePrefabIndex[pig.type];
+            addObject = new AddPigCommand(pig.type, pig.rotation, pig.x, pig.y, pigs[index]);
+            commandManager.ExecuteCommand(addObject);
+        }
+
+        for (int i = 0; i < levelFromFile.birds.Count; i++)
+        {
+            addObject = new AddBirdCommand(levelFromFile.birds[i].type, birdControllers[levelFromFile.birds[i].type]);
+            commandManager.ExecuteCommand(addObject);
+        }
+        
+        ELevel.instance.loadingLevelFromFile = false;
     }
 }

@@ -4,52 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AddBirdCommand : UndoableCommand {
+public class AddBirdCommand : Command {
 
     private Transform birdPanel = null;
-    private BirdData item;
-    //private int index;
-    public static Dictionary<string, int> birdCount = new Dictionary<string, int>();
-    public static int birdCountTotal = 0;
+    private string type;
 
 	public AddBirdCommand(string type, Transform birdPanel = null)
     {
-        item = new BirdData(type);
-        InitializeCount(type);
+        if (!ELevel.instance.birdCount.ContainsKey(type))
+            ELevel.instance.birdCount.Add(type, 0);
         this.birdPanel = birdPanel;
-    }
-
-    public AddBirdCommand(BirdData bird, Transform birdPanel = null)
-    {
-        item = bird;
-        InitializeCount(bird.type);
-    }
-
-    void InitializeCount(string type)
-    {
-        if (!birdCount.ContainsKey(type))
-            birdCount.Add(type, 0);
+        this.type = type;
     }
 
     public override void Execute()
     {
-        ELevel.instance.level.birds.Add(item);
-        birdCount[item.type]++;
-        birdCountTotal++;
-        if(birdPanel != null)
-        {
-            birdPanel.transform.GetChild(3).GetComponent<Text>().text = birdCount[item.type].ToString();
-        }
-    }
+        if (ELevel.instance.birdCount[type] < 9)
+            ELevel.instance.birdCount[type]++;
 
-    public override void Undo()
-    {
-        ELevel.instance.level.birds.Remove(item);
-        birdCount[item.type]--;
-        birdCountTotal--;
         if (birdPanel != null)
         {
-            birdPanel.transform.GetChild(3).GetComponent<Text>().text = birdCount[item.type].ToString();
+            birdPanel.transform.GetChild(3).GetComponent<Text>().text = ELevel.instance.birdCount[type].ToString();
         }
     }
 }
