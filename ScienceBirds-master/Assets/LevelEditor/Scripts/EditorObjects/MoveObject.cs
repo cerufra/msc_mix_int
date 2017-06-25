@@ -29,8 +29,8 @@ public class MoveObject : MonoBehaviour
 
         posicaoAntesDeArrastar = gameObject.transform.position;
 
-        if(MenuObject.instance.DifferentIndex(objectIndex))
-            MenuObject.instance.HideMenu();
+        //if(MenuObject.instance.DifferentIndex(objectIndex))
+        //    MenuObject.instance.HideMenu();
     }
 
     void OnMouseDrag()

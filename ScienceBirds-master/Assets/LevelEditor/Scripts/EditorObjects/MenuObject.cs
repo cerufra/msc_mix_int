@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class MenuObject : MonoBehaviour {
+public class MenuObject : MonoBehaviour, IPointerExitHandler {
 
     public static MenuObject instance = null;
 
@@ -58,7 +59,7 @@ public class MenuObject : MonoBehaviour {
     public void AtivateMenu(long index, string type)
     {
         gameObject.SetActive(true);
-        Vector3 position = new Vector3(Input.mousePosition.x + 50, Input.mousePosition.y - 60, Input.mousePosition.z);
+        Vector3 position = new Vector3(Input.mousePosition.x + 45, Input.mousePosition.y - 55, Input.mousePosition.z);
         transform.position = position;
 
         objectIndex = index;
@@ -68,5 +69,17 @@ public class MenuObject : MonoBehaviour {
     public bool DifferentIndex(long idx)
     {
         return (objectIndex != idx);
+    }
+
+    /*void OnMouseExit()
+    {
+        HideMenu();
+        Debug.Log("Mouse exit");
+    }*/
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        //Debug.Log("Pointer exit");
+        HideMenu();
     }
 }

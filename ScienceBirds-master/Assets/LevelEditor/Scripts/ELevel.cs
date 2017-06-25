@@ -66,6 +66,9 @@ public class ELevel : MonoBehaviour {
             }
         }
 
+        blocksEditor.Clear();
+        pigsEditor.Clear();
+
         if (level.blocks.Count == 0 || level.pigs.Count == 0 || level.birds.Count == 0)
             return false;
         return true;

@@ -2,63 +2,12 @@
 <Level width="2">
   <Camera x="0" y="-1" minWidth="15" maxWidth="17.5" />
   <Birds>
-    <Bird type="BirdBlack" />
+    <Bird type="BirdBlue" />
   </Birds>
   <Slingshot x="-6" y="-2.5" />
   <GameObjects>
-    <Block type="RectBig" material="wood" x="2.45" y="-2.49" rotation="90" />
-    <Block type="RectBig" material="wood" x="2.45" y="-0.52" rotation="90" />
-    <Block type="RectSmall" material="wood" x="2.45" y="0.9" rotation="90" />
-    <Block type="SquareTiny" material="wood" x="2.45" y="1.46" rotation="90" />
-    <Block type="RectTiny" material="wood" x="2.64" y="1.65" rotation="0" />
-    <Block type="RectTiny" material="wood" x="3.01" y="1.65" rotation="0" />
-    <Block type="RectTiny" material="wood" x="3.39" y="1.65" rotation="0" />
-    <Block type="RectTiny" material="wood" x="3.77" y="1.65" rotation="0" />
-    <Block type="RectBig" material="wood" x="3.96" y="-2.49" rotation="90" />
-    <Block type="RectBig" material="wood" x="3.96" y="-0.52" rotation="90" />
-    <Block type="RectSmall" material="wood" x="3.96" y="0.9" rotation="90" />
-    <Block type="SquareTiny" material="wood" x="3.96" y="1.46" rotation="90" />
-    <Block type="RectBig" material="ice" x="2.83" y="-2.48" rotation="90" />
-    <Block type="RectBig" material="ice" x="2.83" y="-0.51" rotation="90" />
-    <Block type="RectSmall" material="ice" x="2.83" y="0.91" rotation="90" />
-    <Block type="SquareTiny" material="ice" x="2.83" y="1.47" rotation="90" />
-    <Block type="RectBig" material="ice" x="3.2" y="-2.48" rotation="90" />
-    <Block type="RectBig" material="ice" x="3.2" y="-0.51" rotation="90" />
-    <Block type="RectSmall" material="ice" x="3.2" y="0.91" rotation="90" />
-    <Block type="SquareTiny" material="ice" x="3.2" y="1.47" rotation="90" />
-    <Block type="RectBig" material="ice" x="3.58" y="-2.48" rotation="90" />
-    <Block type="RectBig" material="ice" x="3.58" y="-0.51" rotation="90" />
-    <Block type="RectSmall" material="ice" x="3.58" y="0.91" rotation="90" />
-    <Block type="SquareTiny" material="ice" x="3.58" y="1.47" rotation="90" />
-    <Block type="RectBig" material="wood" x="2.45" y="-2.49" rotation="90" />
-    <Block type="RectBig" material="wood" x="2.45" y="-0.52" rotation="90" />
-    <Block type="RectSmall" material="wood" x="2.45" y="0.9" rotation="90" />
-    <Block type="SquareTiny" material="wood" x="2.45" y="1.46" rotation="90" />
-    <Block type="RectTiny" material="wood" x="2.64" y="1.65" rotation="0" />
-    <Block type="RectTiny" material="wood" x="3.01" y="1.65" rotation="0" />
-    <Block type="RectTiny" material="wood" x="3.39" y="1.65" rotation="0" />
-    <Block type="RectTiny" material="wood" x="3.77" y="1.65" rotation="0" />
-    <Block type="RectBig" material="wood" x="3.96" y="-2.49" rotation="90" />
-    <Block type="RectBig" material="wood" x="3.96" y="-0.52" rotation="90" />
-    <Block type="RectSmall" material="wood" x="3.96" y="0.9" rotation="90" />
-    <Block type="SquareTiny" material="wood" x="3.96" y="1.46" rotation="90" />
-    <Block type="RectBig" material="ice" x="2.83" y="-2.48" rotation="90" />
-    <Block type="RectBig" material="ice" x="2.83" y="-0.51" rotation="90" />
-    <Block type="RectSmall" material="ice" x="2.83" y="0.91" rotation="90" />
-    <Block type="SquareTiny" material="ice" x="2.83" y="1.47" rotation="90" />
-    <Block type="RectBig" material="ice" x="3.2" y="-2.48" rotation="90" />
-    <Block type="RectBig" material="ice" x="3.2" y="-0.51" rotation="90" />
-    <Block type="RectSmall" material="ice" x="3.2" y="0.91" rotation="90" />
-    <Block type="SquareTiny" material="ice" x="3.2" y="1.47" rotation="90" />
-    <Block type="RectBig" material="ice" x="3.58" y="-2.48" rotation="90" />
-    <Block type="RectBig" material="ice" x="3.58" y="-0.51" rotation="90" />
-    <Block type="RectSmall" material="ice" x="3.58" y="0.91" rotation="90" />
-    <Block type="SquareTiny" material="ice" x="3.58" y="1.47" rotation="90" />
-    <Pig type="BasicBig" x="5.274725" y="-2.959183" rotation="0" />
-    <Pig type="BasicMedium" x="3.171116" y="2.158556" rotation="0" />
-    <Pig type="BasicSmall" x="-0.1569858" y="-3.288854" rotation="0" />
-    <Pig type="BasicBig" x="5.274725" y="-2.959183" rotation="0" />
-    <Pig type="BasicMedium" x="3.171116" y="2.158556" rotation="0" />
-    <Pig type="BasicSmall" x="-0.1569858" y="-3.288854" rotation="0" />
+    <Block type="SquareHole" material="wood" x="4.646782" y="-3.053375" rotation="0" />
+    <Block type="RectFat" material="wood" x="2.135007" y="-3.084773" rotation="90" />
+    <Pig type="BasicBig" x="5.745683" y="-3.006279" rotation="0" />
   </GameObjects>
 </Level>

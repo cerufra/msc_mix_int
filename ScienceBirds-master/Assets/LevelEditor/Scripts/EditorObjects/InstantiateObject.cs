@@ -6,12 +6,18 @@ using UnityEngine.EventSystems;
 public class InstantiateObject : MonoBehaviour {
 
     private Vector3 mousePosition;
+    private Color tmpColor;
 
     void Awake()
     {
         if (ELevel.instance.loadingLevelFromFile)
         {
             gameObject.AddComponent<MoveObject>();
+        }else
+        {
+            tmpColor = gameObject.GetComponentInParent<SpriteRenderer>().color;
+            tmpColor.a = 0.55f;
+            gameObject.GetComponentInParent<SpriteRenderer>().color = tmpColor;
         }
     }
 
@@ -31,7 +37,11 @@ public class InstantiateObject : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if(!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            tmpColor.a = 1f;
+            gameObject.GetComponentInParent<SpriteRenderer>().color = tmpColor;
             gameObject.AddComponent<MoveObject>();
+        }
     }
 }
