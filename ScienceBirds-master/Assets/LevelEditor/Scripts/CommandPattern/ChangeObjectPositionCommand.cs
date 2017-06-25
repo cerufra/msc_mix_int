@@ -20,9 +20,15 @@ public class ChangeObjectPositionCommand : UndoableCommand {
         if(ELevel.instance.blocksEditor.ContainsKey(objectIndex))
         {
             editorObject = ELevel.instance.blocksEditor[objectIndex];
-        }else
+        }
+        else if (ELevel.instance.pigsEditor.ContainsKey(objectIndex))
         {
             editorObject = ELevel.instance.pigsEditor[objectIndex];
+        }
+        else
+        {
+            Debug.Log("Erro: Change object position");
+            return;
         }
     }
 

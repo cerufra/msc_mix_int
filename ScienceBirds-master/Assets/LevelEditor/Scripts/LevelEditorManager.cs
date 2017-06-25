@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class LevelEditorManager : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class LevelEditorManager : MonoBehaviour
 
     // Command Manager
     public static CommandManager commandManager = new CommandManager();
+    Dictionary<string, AddBirdCommand> addBirdRef = new Dictionary<string, AddBirdCommand>();
 
     // Caso true, permite carregar level xml para editor
     public static bool loadXMLFile = false;
@@ -54,6 +56,7 @@ public class LevelEditorManager : MonoBehaviour
             birdController.transform.GetChild(0).GetComponent<Image>().sprite = birdSprite;
             // Add Button
             AddBirdCommand addBird = new AddBirdCommand(birds[i].name, birdController.transform);
+            addBirdRef.Add(birds[i].name, addBird);
             Button addButton = birdController.transform.GetChild(1).GetComponent<Button>();
             addButton.onClick.AddListener(delegate 
                                             {
@@ -87,7 +90,9 @@ public class LevelEditorManager : MonoBehaviour
 
     public void clickInstatiateObj(string type)
     {
-        ELevel.instance.creatingObject = true;
+        if (toInstantiate != null && !type.Equals(toInstantiate))
+            CancelCreatingObject();
+
         toInstantiate = type;
         createInstance();
     }
@@ -180,8 +185,28 @@ public class LevelEditorManager : MonoBehaviour
             else if (Input.GetKey(KeyCode.U))
             {
                 clickInstatiateObj("BasicSmall");
+            }else if (Input.GetKey(KeyCode.Escape))
+            {
+                CancelCreatingObject();
             }
         }
+    }
+
+    void Update()
+    {
+        if (ELevel.instance.creatingObject)
+        {
+            createInstance();
+            ELevel.instance.creatingObject = false;
+        }
+    }
+
+    void CancelCreatingObject()
+    {
+        long indexObject = ELevel.instance.objNum - 1;
+        Command cancel = new RemoveObjectCommand(indexObject);
+        commandManager.ExecuteCommand(cancel);
+        //commandManager.Undo();
     }
 
     public void changeCurrentMaterial()
@@ -220,6 +245,13 @@ public class LevelEditorManager : MonoBehaviour
 
     public void CreateLevelButton()
     {
+        // Limpa levels criados ateriormente
+        DirectoryInfo di = new DirectoryInfo(Application.dataPath + "/StreamingAssets/Levels/");
+        foreach (FileInfo file in di.GetFiles())
+        {
+            file.Delete();
+        }
+
         if (ELevel.instance.PrepareForSaving()) 
         {
             string path = Application.dataPath + "/StreamingAssets/Levels/level-"
@@ -256,6 +288,14 @@ public class LevelEditorManager : MonoBehaviour
             index = typePrefabIndex[pig.type];
             addObject = new AddPigCommand(pig.type, pig.rotation, pig.x, pig.y, pigs[index]);
             commandManager.ExecuteCommand(addObject);
+        }
+        
+        foreach(BirdData bird in levelFromFile.birds)
+        {
+            if (addBirdRef.ContainsKey(bird.type))
+            {
+                commandManager.ExecuteCommand(addBirdRef[bird.type]);
+            }
         }
 
         ELevel.instance.loadingLevelFromFile = false;

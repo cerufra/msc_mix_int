@@ -39,7 +39,7 @@ public class AddBlockCommand : UndoableCommand {
                 block.rotated90Degree = true;
                 block.gameObject.transform.Rotate(new Vector3(0, 0, 1), 90);
             }
-            block.gameObject.GetComponent<Transform>().gameObject.AddComponent<InstantiateObject>();
+            block.gameObject.AddComponent<InstantiateObject>();
         }
 
         ELevel.instance.blocksEditor.Add(blockIndex, block);
@@ -47,6 +47,10 @@ public class AddBlockCommand : UndoableCommand {
 
     public override void Undo()
     {
+        //Debug.Log("Undo add block");
+        if (!ELevel.instance.blocksEditor.ContainsKey(blockIndex))
+            return;
+
         if (prefab != null)
         {
             MonoBehaviour.Destroy(block.gameObject);

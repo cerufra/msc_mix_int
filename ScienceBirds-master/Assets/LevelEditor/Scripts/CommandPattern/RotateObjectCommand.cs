@@ -19,9 +19,14 @@ public class RotateObjectCommand : UndoableCommand {
         {
             editorObject = ELevel.instance.blocksEditor[objectIndex];
         }
-        else
+        else if (ELevel.instance.pigsEditor.ContainsKey(objectIndex))
         {
             editorObject = ELevel.instance.pigsEditor[objectIndex];
+        }
+        else
+        {
+            Debug.Log("Erro: Rotate object");
+            return;
         }
 
         Rotate();

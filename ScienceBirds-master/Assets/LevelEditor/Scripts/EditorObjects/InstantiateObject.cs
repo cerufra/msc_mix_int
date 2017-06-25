@@ -28,10 +28,7 @@ public class InstantiateObject : MonoBehaviour {
 
         mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        //transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
-
         mousePosition.z = -5;
-
         transform.position = mousePosition;
     }
 
@@ -42,6 +39,8 @@ public class InstantiateObject : MonoBehaviour {
             tmpColor.a = 1f;
             gameObject.GetComponentInParent<SpriteRenderer>().color = tmpColor;
             gameObject.AddComponent<MoveObject>();
+
+            ELevel.instance.creatingObject = true;
         }
     }
 }

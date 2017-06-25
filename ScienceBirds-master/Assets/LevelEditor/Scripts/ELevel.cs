@@ -30,11 +30,21 @@ public class ELevel : MonoBehaviour {
 
         public void recuperaDadosObjeto()
         {
-            dados.x = gameObject.transform.position.x;
-            dados.y = gameObject.transform.position.y;
+            if(this.gameObject == null || this.dados == null)
+            {
+                Debug.Log("Erro: Recupera dados");
+                if (this.dados != null)
+                    Debug.Log(dados.type);
+                if(this.gameObject != null)
+                    Debug.Log(this.gameObject.name);
+                return;
+            }
+            dados.x = this.gameObject.transform.position.x;
+            dados.y = this.gameObject.transform.position.y;
             dados.rotation = rotated90Degree ? 90f : 0f;
         }
     }
+    
 
     public Dictionary<long, EObject> blocksEditor = new Dictionary<long, EObject>();
     public Dictionary<long, EObject> pigsEditor = new Dictionary<long, EObject>();
@@ -66,9 +76,6 @@ public class ELevel : MonoBehaviour {
             }
         }
 
-        blocksEditor.Clear();
-        pigsEditor.Clear();
-
         if (level.blocks.Count == 0 || level.pigs.Count == 0 || level.birds.Count == 0)
             return false;
         return true;
@@ -76,6 +83,7 @@ public class ELevel : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+        
         if (instance == null)
             instance = this;
         else if (instance != this)
@@ -86,13 +94,6 @@ public class ELevel : MonoBehaviour {
         instance.level.width = 2;
 
         //DontDestroyOnLoad(gameObject);
-
-        // Limpa levels criados ateriormente
-        DirectoryInfo di = new DirectoryInfo(Application.dataPath + "/StreamingAssets/Levels/");
-        foreach (FileInfo file in di.GetFiles())
-        {
-            file.Delete();
-        }
     }
 
     void AddCamera()

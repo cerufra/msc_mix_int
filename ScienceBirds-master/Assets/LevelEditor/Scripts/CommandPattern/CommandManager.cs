@@ -8,6 +8,7 @@ public class CommandManager
 
     public void ExecuteCommand(Command cmd)
     {
+        //Debug.Log("Command: " + cmd.GetType());
         cmd.Execute();
         if (cmd is UndoableCommand)
         {
@@ -22,6 +23,7 @@ public class CommandManager
         {
             UndoableCommand cmd = (UndoableCommand)commandStack.Pop();
             cmd.Undo();
+            //Debug.Log("Undo: " + cmd.GetType());
         }
     }
 }

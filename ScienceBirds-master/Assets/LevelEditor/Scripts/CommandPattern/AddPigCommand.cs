@@ -31,7 +31,7 @@ public class AddPigCommand : UndoableCommand {
                 pig.gameObject.transform.Rotate(new Vector3(0, 0, 1), pig.dados.rotation);
                 pig.rotated90Degree = true;
             }
-            pig.gameObject.GetComponent<Transform>().gameObject.AddComponent<InstantiateObject>();
+            pig.gameObject.AddComponent<InstantiateObject>();
             pig.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         }
 
@@ -40,10 +40,13 @@ public class AddPigCommand : UndoableCommand {
 
     public override void Undo()
     {
+        if (!ELevel.instance.pigsEditor.ContainsKey(pigIndex))
+            return;
+
         if (prefab != null)
         {
             MonoBehaviour.Destroy(pig.gameObject);
         }
-        ELevel.instance.blocksEditor.Remove(pigIndex);
+        ELevel.instance.pigsEditor.Remove(pigIndex);
     }
 }
