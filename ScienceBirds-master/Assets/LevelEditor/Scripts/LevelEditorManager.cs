@@ -245,6 +245,7 @@ public class LevelEditorManager : MonoBehaviour
 
     public void CreateLevelButton()
     {
+        CancelCreatingObject();
         // Limpa levels criados ateriormente
         DirectoryInfo di = new DirectoryInfo(Application.dataPath + "/StreamingAssets/Levels/");
         foreach (FileInfo file in di.GetFiles())
