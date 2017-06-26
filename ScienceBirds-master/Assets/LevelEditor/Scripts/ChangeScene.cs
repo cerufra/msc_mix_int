@@ -20,4 +20,10 @@ public class ChangeScene : MonoBehaviour {
         SceneManager.LoadScene("LevelEditor");
         Timer.instance.EditandoLevel();
     }
+
+    public void GoogleForm()
+    {
+        Debug.Log("Tempo criacao = " + Timer.instance.TempoCriacaoLevel() + " segundo(s)");
+        Application.OpenURL("https://docs.google.com/forms/d/1_3mO1cO5pvV6zpJ1gByR6m4eYFeF6v5ExQgyRPyVpXA/prefill");
+    }
 }
