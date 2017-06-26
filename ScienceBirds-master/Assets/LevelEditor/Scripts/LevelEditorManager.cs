@@ -86,6 +86,8 @@ public class LevelEditorManager : MonoBehaviour
             CarregaXmlLevel(Application.dataPath + pathXMLFile);
             loadXMLFile = false;
         }
+
+        Timer.instance.InicioLevelEditor();
     }
 
     public void clickInstatiateObj(string type)
@@ -267,6 +269,7 @@ public class LevelEditorManager : MonoBehaviour
         {
             warning.SetActive(true);
         }
+        Timer.instance.CriandoLevel();
     }
 
     public void CarregaXmlLevel(string path)
