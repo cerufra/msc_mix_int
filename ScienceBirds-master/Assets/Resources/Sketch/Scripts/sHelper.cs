@@ -225,14 +225,14 @@ public class sHelper : MonoBehaviour {
                 v2 = workPoly.GetVertex(MouseX, MouseY);
                 deltaX = (int)(v1.Coordinate.x - v2.Coordinate.x);
                 deltaY = (int)(v1.Coordinate.y - v2.Coordinate.y);
-                if (deltaX != 0 || deltaY != 0)
-                {
+                if (deltaX == 0 && deltaY == 0) {
+                    // Mesmo ponto
+                    break;
+                } else if (deltaX != 0 && deltaY != 0) {
                     HardLock(true);
                     Warning.SetActive(true);
                     GameObject.Find("Mensagem").GetComponent<Text>().text = "Não é possível traçar retas anguladas";
-                }
-                else
-                {
+                } else {
                     workPoly.AddLine(v1, v2);
                     workPoly.SelectVertex(MouseX, MouseY);
                 }
@@ -263,6 +263,7 @@ public class sHelper : MonoBehaviour {
             //    break;
 
         }
+        UpdateMouseState();
     }
 
     public void ResolveRightClick () {
