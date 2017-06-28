@@ -23,6 +23,8 @@ public class MoveObject : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (ELevel.instance.isGravityEditorOn)
+            return;
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
@@ -35,6 +37,8 @@ public class MoveObject : MonoBehaviour
 
     void OnMouseDrag()
     {
+        if (ELevel.instance.isGravityEditorOn)
+            return;
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
@@ -43,6 +47,8 @@ public class MoveObject : MonoBehaviour
 
     void OnMouseUp()
     {
+        if (ELevel.instance.isGravityEditorOn)
+            return;
         ChangeObjectPositionCommand cbp = new ChangeObjectPositionCommand(objectIndex, posicaoAntesDeArrastar);
         if (instanciado)
             LevelEditorManager.commandManager.ExecuteCommand(cbp);
@@ -52,7 +58,7 @@ public class MoveObject : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !ELevel.instance.isGravityEditorOn)
         {
             MenuObject.instance.AtivateMenu(objectIndex, objectType);
         }

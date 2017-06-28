@@ -42,5 +42,17 @@ public class InstantiateObject : MonoBehaviour {
 
             ELevel.instance.creatingObject = true;
         }
+        
+    }
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            long indexObject = ELevel.instance.objNum - 1;
+            Command cancel = new RemoveObjectCommand(indexObject);
+            LevelEditorManager.commandManager.ExecuteCommand(cancel);
+        }
     }
 }
+
+

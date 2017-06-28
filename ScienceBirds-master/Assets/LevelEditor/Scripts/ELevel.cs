@@ -16,6 +16,7 @@ public class ELevel : MonoBehaviour {
     public long objNum = 0;
     public bool creatingObject = false;
     public bool loadingLevelFromFile = false;
+    public bool isGravityEditorOn = false;
 
     public class EObject
     {

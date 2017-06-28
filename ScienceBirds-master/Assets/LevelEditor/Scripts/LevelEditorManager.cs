@@ -43,8 +43,19 @@ public class LevelEditorManager : MonoBehaviour
     public static bool loadXMLFile = false;
     public static string pathXMLFile = @"/StreamingAssets/Line2Blocks/level-1.xml";
 
+    // Gravidade toggle
+    public Button gravityButton;
+    public Sprite gravityOnSprite, gravityOffSprite;
+    bool gravityOn = false;
+    public GameObject gravityWarning;
+    Queue<Vector3> positionBlocks = new Queue<Vector3>();
+    Queue<Vector3> positionPigs = new Queue<Vector3>();
+    
+
     void Awake()
     {
+        if (Timer.instance == null)
+            Timer.instance = new Timer();
         // Bird Controllers
         for (int i = 0; i < birds.Count; i++)
         {
@@ -88,6 +99,74 @@ public class LevelEditorManager : MonoBehaviour
         }
 
         Timer.instance.InicioLevelEditor();
+
+        gravityButton.onClick.AddListener(GravityButtonAction);
+    }
+
+    void GravityButtonAction()
+    {
+        gravityButton.enabled = false;
+        if (gravityOn)
+        {
+            gravityButton.image.sprite = gravityOffSprite;
+            gravityOn = false;
+
+            foreach (ELevel.EObject block in ELevel.instance.blocksEditor.Values)
+            {
+                if (block.gameObject != null)
+                {
+                    block.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                    block.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    block.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
+                    block.gameObject.transform.position = positionBlocks.Dequeue();
+                    if (block.rotated90Degree)
+                        block.gameObject.GetComponent<Rigidbody2D>().rotation = 90;
+                    else
+                        block.gameObject.GetComponent<Rigidbody2D>().rotation = 0;
+                }
+            }
+
+            foreach (ELevel.EObject pig in ELevel.instance.pigsEditor.Values)
+            {
+                if (pig.gameObject != null)
+                {
+                    pig.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                    pig.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    pig.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
+                    pig.gameObject.transform.position = positionPigs.Dequeue();
+                    if (pig.rotated90Degree)
+                        pig.gameObject.GetComponent<Rigidbody2D>().rotation = 90;
+                    else
+                        pig.gameObject.GetComponent<Rigidbody2D>().rotation = 0;
+                }
+            }
+        }
+        else
+        {
+            gravityButton.image.sprite = gravityOnSprite;
+            gravityOn = true;
+
+            foreach (ELevel.EObject block in ELevel.instance.blocksEditor.Values)
+            {
+                if (block.gameObject != null)
+                {
+                    block.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+                    positionBlocks.Enqueue(block.gameObject.transform.position);
+                }
+            }
+
+            foreach (ELevel.EObject pig in ELevel.instance.pigsEditor.Values)
+            {
+                if (pig.gameObject != null)
+                {
+                    pig.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+                    positionPigs.Enqueue(pig.gameObject.transform.position);
+                }
+            }
+        }
+        gravityWarning.SetActive(gravityOn);
+        ELevel.instance.isGravityEditorOn = gravityOn;
+        gravityButton.enabled = true;
     }
 
     public void clickInstatiateObj(string type)
@@ -193,7 +272,7 @@ public class LevelEditorManager : MonoBehaviour
             }
         }
     }
-
+    
     void Update()
     {
         if (ELevel.instance.creatingObject)
