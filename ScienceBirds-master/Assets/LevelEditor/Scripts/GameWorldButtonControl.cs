@@ -16,15 +16,15 @@ public class GameWorldButtonControl : MonoBehaviour {
             {
                 nextButton.SetActive(false);
                 formButton.SetActive(true);
-                Debug.Log("form");
+                //Debug.Log("form");
             }
             else
             {
                 nextButton.SetActive(true);
                 formButton.SetActive(false);
-                Debug.Log("next");
+                //Debug.Log("next");
             }
-            Debug.Log("Buttons gameWorld");
+            //Debug.Log("Buttons gameWorld");
         }
         else
         {

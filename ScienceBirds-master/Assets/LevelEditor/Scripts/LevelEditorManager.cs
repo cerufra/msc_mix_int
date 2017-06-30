@@ -349,6 +349,7 @@ public class LevelEditorManager : MonoBehaviour
             warning.SetActive(true);
         }
         Timer.instance.CriandoLevel();
+        Debug.Log("Tempo criacao = " + Timer.instance.TempoCriacaoLevel());
     }
 
     public void CarregaXmlLevel(string path)

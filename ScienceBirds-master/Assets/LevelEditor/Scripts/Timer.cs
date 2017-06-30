@@ -10,9 +10,11 @@ public class Timer : MonoBehaviour {
     private float inicioSketchEditorTmp , _inicioSketchEditor;
     private float inicioLevelEditorTmp, _inicioLevelEditor;
     private float criacaoLevel;
-    private bool editandoLevelTmp = false, _editandoLevel;
+    private bool editandoLevelTmp = false;
     private bool nenhumLevelCriado = true;
     public int LevelNum = 0;
+
+    public static bool editorManual = false;
 
 	// Use this for initialization
 	void Start () {
@@ -43,21 +45,20 @@ public class Timer : MonoBehaviour {
     // Saves current time and temporary values
     public void CriandoLevel()
     {
+        if (editandoLevelTmp)
+            return;
         _inicioLevelEditor = inicioLevelEditorTmp;
         _inicioSketchEditor = inicioSketchEditorTmp;
         criacaoLevel = Time.unscaledTime;
-        _editandoLevel = editandoLevelTmp;
         nenhumLevelCriado = false;
     }
 
     public float TempoCriacaoLevel()
     {
-        if (nenhumLevelCriado)
-            return -1;
 
         float result = 0;
 
-        if (_editandoLevel)
+        if (editorManual)
         {
             result = criacaoLevel - _inicioLevelEditor;
         }
