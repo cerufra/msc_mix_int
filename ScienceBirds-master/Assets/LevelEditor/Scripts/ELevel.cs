@@ -53,6 +53,10 @@ public class ELevel : MonoBehaviour {
 
     public bool PrepareForSaving()
     {
+        level.blocks.Clear();
+        level.pigs.Clear();
+        level.birds.Clear();
+
         List<EObject> blockValues = new List<EObject>(blocksEditor.Values);
         foreach (EObject block in blockValues)
         {
