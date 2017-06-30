@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour {
     private float criacaoLevel;
     private bool editandoLevelTmp = false, _editandoLevel;
     private bool nenhumLevelCriado = true;
+    public int LevelNum = 0;
 
 	// Use this for initialization
 	void Start () {

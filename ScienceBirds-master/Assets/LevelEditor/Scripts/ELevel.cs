@@ -95,6 +95,10 @@ public class ELevel : MonoBehaviour {
         instance.level.width = 2;
 
         //DontDestroyOnLoad(gameObject);
+        if (Timer.instance != null)
+            levelNum = Timer.instance.LevelNum;
+        else
+            Debug.Log("Elevel: Can't find timer");
     }
 
     void AddCamera()
