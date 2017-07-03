@@ -64,6 +64,9 @@ public class LevelEditorManager : MonoBehaviour
     Queue<Vector3> positionBlocks = new Queue<Vector3>();
     Queue<Vector3> positionPigs = new Queue<Vector3>();
 
+    // Blocks parent
+    public GameObject blocksParent;
+
     private static LevelEditorManager instance;
 
     void Awake()
@@ -111,6 +114,8 @@ public class LevelEditorManager : MonoBehaviour
             EnableMenu(false);
             ConfirmMenu.SetActive(true);
         }
+
+        AddBlockCommand.BlocksEditor = blocksParent;
     }
 
     public static LevelEditorManager Instance()

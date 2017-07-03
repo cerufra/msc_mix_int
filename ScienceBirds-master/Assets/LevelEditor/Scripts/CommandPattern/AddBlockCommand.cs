@@ -8,6 +8,7 @@ public class AddBlockCommand : UndoableCommand {
     private long blockIndex;
     private Transform prefab;
     ELevel.EObject block = new ELevel.EObject();
+    public static GameObject BlocksEditor = null;
 
     public AddBlockCommand(string type, float rotation, float x, float y, string material, Transform pref = null)
     {
@@ -40,6 +41,10 @@ public class AddBlockCommand : UndoableCommand {
                 block.gameObject.transform.Rotate(new Vector3(0, 0, 1), 90);
             }
             block.gameObject.AddComponent<InstantiateObject>();
+            if (BlocksEditor != null)
+            {
+                block.gameObject.transform.SetParent(BlocksEditor.transform);
+            }
         }
 
         ELevel.instance.blocksEditor.Add(blockIndex, block);
