@@ -61,8 +61,8 @@ public class LevelEditorManager : MonoBehaviour
     public Sprite gravityOnSprite, gravityOffSprite;
     bool gravityOn = false;
     public GameObject gravityWarning;
-    Queue<Vector3> positionBlocks = new Queue<Vector3>();
-    Queue<Vector3> positionPigs = new Queue<Vector3>();
+    Dictionary<long,Vector3> positionBlocks = new Dictionary<long, Vector3>();
+    Dictionary<long, Vector3> positionPigs = new Dictionary<long, Vector3>();
 
     // Blocks parent
     public GameObject blocksParent;
@@ -160,33 +160,39 @@ public class LevelEditorManager : MonoBehaviour
             gravityButton.image.sprite = gravityOffSprite;
             gravityOn = false;
 
-            foreach (ELevel.EObject block in ELevel.instance.blocksEditor.Values)
+            foreach (KeyValuePair<long,ELevel.EObject> block in ELevel.instance.blocksEditor)
             {
-                if (block.gameObject != null)
+                if (block.Value.gameObject != null)
                 {
-                    block.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-                    block.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                    block.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
-                    block.gameObject.transform.position = positionBlocks.Dequeue();
-                    if (block.rotated90Degree)
-                        block.gameObject.GetComponent<Rigidbody2D>().rotation = 90;
+                    block.Value.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                    block.Value.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    block.Value.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
+                    if (positionBlocks.ContainsKey(block.Key))
+                        block.Value.gameObject.transform.position = positionBlocks[block.Key];
                     else
-                        block.gameObject.GetComponent<Rigidbody2D>().rotation = 0;
+                        Debug.Log("LevelEditor: gravity toggle error - blocks");
+                    if (block.Value.rotated90Degree)
+                        block.Value.gameObject.GetComponent<Rigidbody2D>().rotation = 90;
+                    else
+                        block.Value.gameObject.GetComponent<Rigidbody2D>().rotation = 0;
                 }
             }
 
-            foreach (ELevel.EObject pig in ELevel.instance.pigsEditor.Values)
+            foreach (KeyValuePair<long,ELevel.EObject> pig in ELevel.instance.pigsEditor)
             {
-                if (pig.gameObject != null)
+                if (pig.Value.gameObject != null)
                 {
-                    pig.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-                    pig.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                    pig.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
-                    pig.gameObject.transform.position = positionPigs.Dequeue();
-                    if (pig.rotated90Degree)
-                        pig.gameObject.GetComponent<Rigidbody2D>().rotation = 90;
+                    pig.Value.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                    pig.Value.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    pig.Value.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
+                    if (positionPigs.ContainsKey(pig.Key))
+                        pig.Value.gameObject.transform.position = positionPigs[pig.Key];
                     else
-                        pig.gameObject.GetComponent<Rigidbody2D>().rotation = 0;
+                        Debug.Log("LevelEditor: gravity toggle error - pigs");
+                    if (pig.Value.rotated90Degree)
+                        pig.Value.gameObject.GetComponent<Rigidbody2D>().rotation = 90;
+                    else
+                        pig.Value.gameObject.GetComponent<Rigidbody2D>().rotation = 0;
                 }
             }
         }
@@ -195,21 +201,21 @@ public class LevelEditorManager : MonoBehaviour
             gravityButton.image.sprite = gravityOnSprite;
             gravityOn = true;
 
-            foreach (ELevel.EObject block in ELevel.instance.blocksEditor.Values)
+            foreach (KeyValuePair<long, ELevel.EObject> block in ELevel.instance.blocksEditor)
             {
-                if (block.gameObject != null)
+                if (block.Value.gameObject != null)
                 {
-                    block.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-                    positionBlocks.Enqueue(block.gameObject.transform.position);
+                    block.Value.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+                    positionBlocks[block.Key] = block.Value.gameObject.transform.position;
                 }
             }
 
-            foreach (ELevel.EObject pig in ELevel.instance.pigsEditor.Values)
+            foreach (KeyValuePair<long,ELevel.EObject> pig in ELevel.instance.pigsEditor)
             {
-                if (pig.gameObject != null)
+                if (pig.Value.gameObject != null)
                 {
-                    pig.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-                    positionPigs.Enqueue(pig.gameObject.transform.position);
+                    pig.Value.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+                    positionPigs[pig.Key] = pig.Value.gameObject.transform.position;
                 }
             }
         }

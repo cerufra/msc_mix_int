@@ -1,4 +1,4 @@
-﻿#define EDITOR_MANUAL
+﻿//#define EDITOR_MANUAL
 
 using System.Collections;
 using System.Collections.Generic;
