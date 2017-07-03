@@ -29,3 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/LevelEditor/LevelEditor.unity
     guid: 0dae067c9de29114f96b3ef38e946fc0
+  - enabled: 1
+    path: Assets/Scenes/MultiEditor.unity
+    guid: 00000000000000000000000000000000

@@ -506,6 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d481aada8f4973141a8361c7ca89274e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelNum: 0
 --- !u!4 &517170436
 Transform:
   m_ObjectHideFlags: 0
@@ -894,7 +895,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Editor_Sketch
+          m_StringArgument: MultiEditor
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

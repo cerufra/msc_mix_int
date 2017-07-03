@@ -28,6 +28,10 @@ public class sHelper : MonoBehaviour {
     public Color ICE_COLOR = Color.cyan;
     public Color STONE_COLOR = Color.grey;
 
+    public Camera SketchCamera;
+
+    public GameObject SceneObjects;
+
     public KeyCode LeftClick;
     public KeyCode RightClick;
     public KeyCode Ocos;
@@ -85,6 +89,7 @@ public class sHelper : MonoBehaviour {
             //guideLines[n].transform.Rotate(new Vector3(0, 0, n * 45));
             guideLines[n].GetComponent<SpriteRenderer>().color = new Color(130, 0, 205, 90);
             guideLines[n].SetActive(false);
+            guideLines[n].transform.parent = SceneObjects.transform;
         }
         path = Application.dataPath + "/StreamingAssets/Line2Blocks/";
         GameObject.Find("std2").GetComponent<Text>().color = WOOD_COLOR;
@@ -174,6 +179,7 @@ public class sHelper : MonoBehaviour {
                     //    listPolygon.Add(poly);
                     workPoly = poly.GetComponent<sPolygon>();
                     workPoly.Init();
+                    poly.transform.parent = SceneObjects.transform;
                 }
                 workPoly.AddVertex(MouseX, MouseY);
                 break;
@@ -593,6 +599,16 @@ public class sHelper : MonoBehaviour {
         StartCoroutine("LoadingText");
     }
 
+    public void EnableCamera(bool value)
+    {
+        SketchCamera.enabled = value;
+    }
+
+    public void EnableObjects(bool value)
+    {
+        SceneObjects.SetActive(value);
+    }
+
     IEnumerator LoadingText()
     {
         while (true)
@@ -605,8 +621,11 @@ public class sHelper : MonoBehaviour {
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(04);
-        LevelEditorManager.loadXMLFile = true;
-        SceneManager.LoadScene("LevelEditor", LoadSceneMode.Single);
+        //LevelEditorManager.loadXMLFile = true;
+        loading.transform.GetChild(1).GetComponent<Text>().text = "Loading";
+        loading.SetActive(false);
+        SceneController.Instance().Preview();
+        //SceneManager.LoadScene("LevelEditor", LoadSceneMode.Single);
     }
 
     //public string[] GetFilled() {

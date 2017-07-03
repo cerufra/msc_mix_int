@@ -52,19 +52,22 @@ public class sCameraController : MonoBehaviour {
         if (zoom != 0) {
             orthoSize -= zoom * zoomStep;
             orthoSize = Mathf.Clamp(orthoSize, minZoom, maxZoom);
+            Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, orthoSize, zoomSpeed * Time.deltaTime);
         }
 
         if (Input.GetKeyDown(zoomPlus)) {
             orthoSize -= zoomStep;
             orthoSize = Mathf.Clamp(orthoSize, minZoom, maxZoom);
+            Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, orthoSize, zoomSpeed * Time.deltaTime);
         }
 
         if (Input.GetKeyDown(zoomMinus)) {
             orthoSize += zoomStep;
             orthoSize = Mathf.Clamp(orthoSize, minZoom, maxZoom);
+            Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, orthoSize, zoomSpeed * Time.deltaTime);
         }
 
-        Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, orthoSize, zoomSpeed * Time.deltaTime);
+
 
         if (Input.GetKey(mouseDrag)) {
             if (!dragging) {

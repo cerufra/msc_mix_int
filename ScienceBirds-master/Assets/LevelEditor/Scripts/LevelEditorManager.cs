@@ -26,8 +26,18 @@ public class LevelEditorManager : MonoBehaviour
     // Panels for UI
     public Transform birdsPanel;
     public Transform bottomPanel;
+    public Transform topPanel;
     public GameObject warning;
     //public Transform topPanel;
+
+    // Menu de confirmação da pré-visualizção
+    public GameObject ConfirmMenu;
+
+    // Camera da cena
+    public Camera EditorCamera;
+
+    // Objetos da cena
+    public GameObject SceneObjects;
 
     // Material atual
     private string currentMaterial = "wood";
@@ -38,6 +48,9 @@ public class LevelEditorManager : MonoBehaviour
     // Command Manager
     public static CommandManager commandManager = new CommandManager();
     Dictionary<string, AddBirdCommand> addBirdRef = new Dictionary<string, AddBirdCommand>();
+
+    // Trava os comandos do editor em modo de previsualização
+    public static bool isPreview = false;
 
     // Caso true, permite carregar level xml para editor
     public static bool loadXMLFile = false;
@@ -50,10 +63,13 @@ public class LevelEditorManager : MonoBehaviour
     public GameObject gravityWarning;
     Queue<Vector3> positionBlocks = new Queue<Vector3>();
     Queue<Vector3> positionPigs = new Queue<Vector3>();
-    
+
+    private static LevelEditorManager instance;
 
     void Awake()
     {
+        instance = this;
+
         if (Timer.instance == null)
             Timer.instance = new Timer();
         // Bird Controllers
@@ -88,6 +104,34 @@ public class LevelEditorManager : MonoBehaviour
         {
             typePrefabIndex.Add(pigs[i].name, i);
         }
+
+        // Se modo de previsaulização, esconde menus, e ignora atalhos
+        if (isPreview)
+        {
+            EnableMenu(false);
+            ConfirmMenu.SetActive(true);
+        }
+    }
+
+    public static LevelEditorManager Instance()
+    {
+        return instance;
+    }
+
+    public void EnableMenu(bool value)
+    {
+        topPanel.gameObject.SetActive(value);
+        bottomPanel.gameObject.SetActive(value);
+    }
+
+    public void EnableObjects(bool value)
+    {
+        SceneObjects.SetActive(value);
+    }
+
+    public void EnableCamera(bool value)
+    {
+        EditorCamera.enabled = value;
     }
 
     void Start()
