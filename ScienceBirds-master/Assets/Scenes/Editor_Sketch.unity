@@ -3520,7 +3520,7 @@ MonoBehaviour:
   cell: {fileID: 1713182682557748, guid: a0397f28bda8db74ab8fcb40c453c384, type: 2}
   vertex: {fileID: 1633317165067158, guid: 56175f9ed3a34b94f997006cdc0e56e0, type: 2}
   line: {fileID: 1347636787509108, guid: 0280d4b3963be5449836c8811d16d42b, type: 2}
-  maxHeight: 45
+  maxHeight: 35
   maxWidth: 45
 --- !u!4 &1908107214
 Transform:
