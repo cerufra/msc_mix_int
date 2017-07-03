@@ -8,17 +8,16 @@
 </Birds>
 <Slingshot x="-8.5" y="-2.5">
 <GameObjects>null
-<Block type="RectMedium" material="wood" x="0.75" y="-1.93" rotation="0.0" />
-<Block type="RectMedium" material="wood" x="2.07" y="-3.44" rotation="0.0" />
-<Block type="RectMedium" material="wood" x="3.39" y="-2.31" rotation="0.0" />
-<Block type="RectTiny" material="wood" x="0.00" y="-3.25" rotation="90.0" />
-<Block type="RectTiny" material="wood" x="0.00" y="-2.87" rotation="90.0" />
-<Block type="RectTiny" material="wood" x="0.00" y="-2.49" rotation="90.0" />
-<Block type="SquareTiny" material="wood" x="0.00" y="-2.21" rotation="90.0" />
-<Block type="RectTiny" material="wood" x="2.64" y="-3.06" rotation="90.0" />
-<Block type="RectTiny" material="wood" x="2.64" y="-2.68" rotation="90.0" />
-<Block type="RectTiny" material="wood" x="1.32" y="-3.06" rotation="90.0" />
-<Block type="RectTiny" material="wood" x="1.32" y="-2.68" rotation="90.0" />
-<Block type="RectTiny" material="wood" x="1.32" y="-2.31" rotation="90.0" />
+<Block type="RectMedium" material="wood" x="0.75" y="2.97" rotation="0.0" />
+<Block type="RectBig" material="wood" x="0.00" y="-2.49" rotation="90.0" />
+<Block type="RectMedium" material="wood" x="0.00" y="-0.70" rotation="90.0" />
+<Block type="RectSmall" material="wood" x="0.00" y="0.52" rotation="90.0" />
+<Block type="SquareTiny" material="wood" x="0.00" y="1.08" rotation="90.0" />
+<Block type="RectMedium" material="wood" x="0.00" y="1.93" rotation="90.0" />
+<Block type="RectBig" material="wood" x="1.32" y="-2.49" rotation="90.0" />
+<Block type="RectMedium" material="wood" x="1.32" y="-0.70" rotation="90.0" />
+<Block type="RectSmall" material="wood" x="1.32" y="0.52" rotation="90.0" />
+<Block type="SquareTiny" material="wood" x="1.32" y="1.08" rotation="90.0" />
+<Block type="RectMedium" material="wood" x="1.32" y="1.93" rotation="90.0" />
 </GameObjects>
 </Level>

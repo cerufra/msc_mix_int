@@ -18,8 +18,8 @@ public class sGridController : MonoBehaviour {
         Instance = this;
 
         GameObject newCell;
-        for (int row = 0; row < maxWidth; row++) {
-            for (int column = 0; column < maxHeight; column++) {
+        for (int row = 0; row < maxHeight; row++) {
+            for (int column = 0; column < maxWidth; column++) {
                 newCell = Instantiate(cell, new Vector3(column * 0.24f, row * 0.24f, 0), cell.transform.rotation);
                 newCell.GetComponent<sCell>().X = column;
                 newCell.GetComponent<sCell>().Y = row;

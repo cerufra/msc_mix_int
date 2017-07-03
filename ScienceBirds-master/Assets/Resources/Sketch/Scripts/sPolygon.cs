@@ -250,4 +250,14 @@ public class sPolygon : MonoBehaviour {
         }
         return l;
     }
+
+    public void Clear()
+    {
+        //List<sLine> lRemove = listLine;
+        List<sVertex> vRemove = listVertex.FindAll(vx => true);
+        foreach(sVertex v in vRemove)
+        {
+            RemoveVertex(v);
+        }
+    }
 }

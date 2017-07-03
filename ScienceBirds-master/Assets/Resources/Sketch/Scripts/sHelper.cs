@@ -48,6 +48,7 @@ public class sHelper : MonoBehaviour {
     public GameObject LinePrefab;
     public GameObject loading;
     public GameObject Warning;
+    public GameObject Clear;
     public string path;
 
     // Posiçao do mouse no Grid
@@ -607,6 +608,18 @@ public class sHelper : MonoBehaviour {
     public void EnableObjects(bool value)
     {
         SceneObjects.SetActive(value);
+    }
+
+    public void ConfirmClear()
+    {
+        Clear.SetActive(true);
+        HardLock(true);
+    }
+
+    public void ClearSketch()
+    {
+        workPoly.Clear();
+        Desselect();
     }
 
     IEnumerator LoadingText()
