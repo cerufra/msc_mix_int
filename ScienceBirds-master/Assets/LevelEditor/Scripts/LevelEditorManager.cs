@@ -167,14 +167,13 @@ public class LevelEditorManager : MonoBehaviour
                     block.Value.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
                     block.Value.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     block.Value.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
+                    block.Value.gameObject.transform.rotation = Quaternion.identity;
                     if (positionBlocks.ContainsKey(block.Key))
                         block.Value.gameObject.transform.position = positionBlocks[block.Key];
                     else
                         Debug.Log("LevelEditor: gravity toggle error - blocks");
                     if (block.Value.rotated90Degree)
-                        block.Value.gameObject.GetComponent<Rigidbody2D>().rotation = 90;
-                    else
-                        block.Value.gameObject.GetComponent<Rigidbody2D>().rotation = 0;
+                        block.Value.gameObject.transform.Rotate(new Vector3(0, 0, 1), 90);
                 }
             }
 
@@ -185,14 +184,13 @@ public class LevelEditorManager : MonoBehaviour
                     pig.Value.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
                     pig.Value.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     pig.Value.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
+                    pig.Value.gameObject.transform.rotation = Quaternion.identity;
                     if (positionPigs.ContainsKey(pig.Key))
                         pig.Value.gameObject.transform.position = positionPigs[pig.Key];
                     else
                         Debug.Log("LevelEditor: gravity toggle error - pigs");
                     if (pig.Value.rotated90Degree)
-                        pig.Value.gameObject.GetComponent<Rigidbody2D>().rotation = 90;
-                    else
-                        pig.Value.gameObject.GetComponent<Rigidbody2D>().rotation = 0;
+                        pig.Value.gameObject.transform.Rotate(new Vector3(0, 0, 1), 90);
                 }
             }
         }
@@ -205,8 +203,11 @@ public class LevelEditorManager : MonoBehaviour
             {
                 if (block.Value.gameObject != null)
                 {
+                    float x = block.Value.gameObject.transform.position.x;
+                    float y = block.Value.gameObject.transform.position.y;
+                    float z = block.Value.gameObject.transform.position.z;
+                    positionBlocks[block.Key] = new Vector3(x, y, z);
                     block.Value.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-                    positionBlocks[block.Key] = block.Value.gameObject.transform.position;
                 }
             }
 
@@ -214,8 +215,11 @@ public class LevelEditorManager : MonoBehaviour
             {
                 if (pig.Value.gameObject != null)
                 {
+                    float x = pig.Value.gameObject.transform.position.x;
+                    float y = pig.Value.gameObject.transform.position.y;
+                    float z = pig.Value.gameObject.transform.position.z;
+                    positionPigs[pig.Key] = new Vector3(x, y, z);
                     pig.Value.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-                    positionPigs[pig.Key] = pig.Value.gameObject.transform.position;
                 }
             }
         }
