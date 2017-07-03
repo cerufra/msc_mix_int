@@ -1888,6 +1888,7 @@ MonoBehaviour:
   LinePrefab: {fileID: 1347636787509108, guid: 0280d4b3963be5449836c8811d16d42b, type: 2}
   loading: {fileID: 1915395476}
   Warning: {fileID: 485764490}
+  Clear: {fileID: 0}
   path: 
 --- !u!1 &1037431174
 GameObject:
@@ -3615,7 +3616,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 982371205}
-        m_MethodName: Clear
+        m_MethodName: ClearSketch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
