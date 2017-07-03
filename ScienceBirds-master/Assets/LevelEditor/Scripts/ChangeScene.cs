@@ -1,4 +1,4 @@
-﻿//#define EDITOR_MANUAL
+﻿#define EDITOR_MANUAL
 
 using System.Collections;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ public class ChangeScene : MonoBehaviour {
 
     public void changeScene(string target)
     {
-        if (target.Equals("Editor_Sketch"))
+        if (target.Equals("MultiEditor"))
         {
             Timer.instance.ComecarContagem();
             Timer.instance.LevelNum = 0;
@@ -37,7 +37,7 @@ public class ChangeScene : MonoBehaviour {
         }
 
 #if EDITOR_MANUAL
-        if (target.Equals("Editor_Sketch"))
+        if (target.Equals("MultiEditor"))
             target = "LevelEditor";
 #endif
 
