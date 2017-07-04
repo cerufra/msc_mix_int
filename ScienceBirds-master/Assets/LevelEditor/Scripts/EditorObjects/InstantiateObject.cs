@@ -7,17 +7,38 @@ public class InstantiateObject : MonoBehaviour {
 
     private Vector3 mousePosition;
     private Color tmpColor;
+    static int objCount = 0;
+    static Queue<GameObject> toInstantiate = new Queue<GameObject>();
 
     void Awake()
     {
         if (ELevel.instance.loadingLevelFromFile)
         {
             gameObject.AddComponent<MoveObject>();
-        }else
+        }
+        else
         {
             tmpColor = gameObject.GetComponentInParent<SpriteRenderer>().color;
             tmpColor.a = 0.55f;
             gameObject.GetComponentInParent<SpriteRenderer>().color = tmpColor;
+
+            objCount++;
+            if (objCount > 1)
+            {
+                Debug.Log("Instatiate " + toInstantiate.Count);
+                while (toInstantiate.Count > 0)
+                {
+                    GameObject obj = toInstantiate.Dequeue();
+                    if (obj != null)
+                    {
+                        if (obj.GetComponent<InstantiateObject>() != null)
+                            Destroy(obj);
+                    }
+                }
+                objCount = 1;
+            }
+            toInstantiate.Enqueue(gameObject);
+
         }
     }
 
@@ -39,7 +60,7 @@ public class InstantiateObject : MonoBehaviour {
             tmpColor.a = 1f;
             gameObject.GetComponentInParent<SpriteRenderer>().color = tmpColor;
             gameObject.AddComponent<MoveObject>();
-
+            objCount--;
             ELevel.instance.creatingObject = true;
         }
         
