@@ -74,7 +74,11 @@ public class LevelEditorManager : MonoBehaviour
         instance = this;
 
         if (Timer.instance == null)
-            Timer.instance = new Timer();
+        {
+            Timer.instance = new GameObject().AddComponent<Timer>();
+            Timer.instance.gameObject.name = "Timer";
+        }
+            
         // Bird Controllers
         for (int i = 0; i < birds.Count; i++)
         {
